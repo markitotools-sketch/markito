@@ -1,0 +1,13 @@
+application/vendor/stripe/stripe-php/README.md
+application/vendor/stripe/stripe-php/CHANGELOG.md
+uploads/
+files/
+backups/
+temp/
+_theme_style_backups/
+application/logs/*
+# Development backup directories
+application/language_backups/
+application/views/**/backups/
+assets/**/backups/
+modules/synchub/**/backups/

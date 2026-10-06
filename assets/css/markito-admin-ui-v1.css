@@ -1,0 +1,3527 @@
+/* ============================================================
+   Markito Admin UI v1 — Phase 1: Global Shell
+   Safe visual layer for Perfex Admin.
+   No business logic / DB / SyncHub changes.
+   ============================================================ */
+
+:root {
+  --mk-admin-orange: #f59b23;
+  --mk-admin-orange-deep: #d97b09;
+  --mk-admin-orange-soft: #fff3df;
+  --mk-admin-ink: #111318;
+  --mk-admin-ink-2: #1b1f26;
+  --mk-admin-sidebar: #111419;
+  --mk-admin-sidebar-2: #171b22;
+  --mk-admin-text: #273244;
+  --mk-admin-muted: #7b8797;
+  --mk-admin-line: #e8ebef;
+  --mk-admin-bg: #f5f7fa;
+  --mk-admin-card: #ffffff;
+  --mk-admin-radius: 16px;
+  --mk-admin-shadow: 0 10px 30px rgba(17, 24, 39, .07);
+  --mk-admin-shadow-hover: 0 16px 42px rgba(17, 24, 39, .11);
+}
+
+/* ---------- Global foundation ---------- */
+body.mk-admin-shell {
+  background: var(--mk-admin-bg) !important;
+  color: var(--mk-admin-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.mk-admin-shell #wrapper {
+  background: var(--mk-admin-bg) !important;
+  min-height: 100vh;
+}
+
+body.mk-admin-shell #wrapper .content {
+  padding-top: 24px !important;
+  padding-bottom: 36px !important;
+}
+
+body.mk-admin-shell a {
+  transition: color .18s ease, background .18s ease, border-color .18s ease,
+              box-shadow .18s ease, transform .18s ease;
+}
+
+/* ---------- Top header ---------- */
+body.mk-admin-shell #header {
+  min-height: 66px !important;
+  background: rgba(255,255,255,.96) !important;
+  border-bottom: 1px solid rgba(17,24,39,.06) !important;
+  box-shadow: 0 8px 24px rgba(17,24,39,.04) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 1001;
+}
+
+body.mk-admin-shell #header > nav {
+  min-height: 66px !important;
+}
+
+body.mk-admin-shell #header #logo {
+  min-height: 66px !important;
+}
+
+body.mk-admin-shell #header #logo img {
+  max-height: 38px !important;
+}
+
+body.mk-admin-shell #header .hide-menu {
+  width: 38px;
+  height: 38px;
+  margin-top: 14px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px !important;
+  color: #596579 !important;
+}
+
+body.mk-admin-shell #header .hide-menu:hover,
+body.mk-admin-shell #header .hide-menu:focus {
+  color: var(--mk-admin-orange-deep) !important;
+  background: var(--mk-admin-orange-soft) !important;
+}
+
+/* Search */
+body.mk-admin-shell #top_search {
+  margin-top: 7px;
+}
+
+body.mk-admin-shell #search_input {
+  height: 42px !important;
+  border: 1px solid #e6e9ee !important;
+  background: #f7f8fa !important;
+  border-radius: 13px !important;
+  color: var(--mk-admin-text) !important;
+  transition: all .18s ease !important;
+}
+
+body.mk-admin-shell #search_input:hover {
+  border-color: #d9dee6 !important;
+  background: #fff !important;
+}
+
+body.mk-admin-shell #search_input:focus {
+  border-color: rgba(245,155,35,.72) !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 4px rgba(245,155,35,.10) !important;
+}
+
+body.mk-admin-shell #top_search_button button {
+  color: #8a94a2 !important;
+}
+
+body.mk-admin-shell #top_search:focus-within #top_search_button button {
+  color: var(--mk-admin-orange-deep) !important;
+}
+
+/* Header icon controls */
+body.mk-admin-shell #header .nav > li > a,
+body.mk-admin-shell #header .mobile-icon-menu > li > a {
+  color: #687488 !important;
+}
+
+body.mk-admin-shell #header .nav > li > a:hover,
+body.mk-admin-shell #header .nav > li > a:focus,
+body.mk-admin-shell #header .mobile-icon-menu > li > a:hover {
+  color: var(--mk-admin-orange-deep) !important;
+}
+
+body.mk-admin-shell #header .tw-bg-primary-600,
+body.mk-admin-shell #header .bg-primary {
+  background: linear-gradient(135deg, #ffb33f, var(--mk-admin-orange)) !important;
+}
+
+body.mk-admin-shell #header .group:hover .group-hover\:tw-bg-primary-700 {
+  background: var(--mk-admin-orange-deep) !important;
+}
+
+/* ---------- Sidebar ---------- */
+body.mk-admin-shell #menu {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(245,155,35,.09), transparent 28%),
+    linear-gradient(180deg, var(--mk-admin-sidebar) 0%, var(--mk-admin-sidebar-2) 100%) !important;
+  border-right: 0 !important;
+  box-shadow: 10px 0 30px rgba(17,24,39,.08);
+}
+
+body.mk-admin-shell #menu .sidebar {
+  padding: 12px 10px 22px !important;
+}
+
+body.mk-admin-shell #side-menu {
+  margin-top: 7px !important;
+}
+
+body.mk-admin-shell #side-menu > li {
+  margin: 3px 0 !important;
+}
+
+body.mk-admin-shell #side-menu > li > a {
+  min-height: 44px;
+  display: flex !important;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  color: #b7c0cd !important;
+  font-weight: 650;
+  position: relative;
+}
+
+body.mk-admin-shell #side-menu > li > a .menu-icon {
+  width: 22px;
+  min-width: 22px;
+  text-align: center;
+  color: #7f8b9b !important;
+  transition: color .18s ease, transform .18s ease;
+}
+
+body.mk-admin-shell #side-menu > li > a:hover {
+  background: rgba(255,255,255,.055) !important;
+  color: #fff !important;
+  transform: translateX(2px);
+}
+
+body.mk-admin-shell #side-menu > li > a:hover .menu-icon {
+  color: var(--mk-admin-orange) !important;
+  transform: scale(1.04);
+}
+
+body.mk-admin-shell #side-menu > li.active > a,
+body.mk-admin-shell #side-menu > li.mm-active > a,
+body.mk-admin-shell #side-menu > li > a.active {
+  color: #fff !important;
+  background: linear-gradient(135deg, rgba(245,155,35,.18), rgba(245,155,35,.08)) !important;
+  box-shadow: inset 0 0 0 1px rgba(245,155,35,.18);
+}
+
+body.mk-admin-shell #side-menu > li.active > a::before,
+body.mk-admin-shell #side-menu > li.mm-active > a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--mk-admin-orange);
+}
+
+body.mk-admin-shell #side-menu > li.active > a .menu-icon,
+body.mk-admin-shell #side-menu > li.mm-active > a .menu-icon {
+  color: var(--mk-admin-orange) !important;
+}
+
+/* Submenus */
+body.mk-admin-shell #side-menu .nav-second-level {
+  margin: 4px 0 8px !important;
+  padding: 4px 0 4px 20px !important;
+  border-left: 1px solid rgba(255,255,255,.07);
+}
+
+body.mk-admin-shell #side-menu .nav-second-level > li > a {
+  color: #8f9aaa !important;
+  padding: 9px 12px !important;
+  border-radius: 9px !important;
+}
+
+body.mk-admin-shell #side-menu .nav-second-level > li > a:hover,
+body.mk-admin-shell #side-menu .nav-second-level > li.active > a,
+body.mk-admin-shell #side-menu .nav-second-level > li.mm-active > a {
+  color: #fff !important;
+  background: rgba(255,255,255,.045) !important;
+}
+
+body.mk-admin-shell #side-menu .nav-second-level > li.active > a {
+  color: #ffc466 !important;
+}
+
+/* Setup */
+body.mk-admin-shell #setup-menu-item > a {
+  margin-top: 10px;
+  border: 1px dashed rgba(245,155,35,.26);
+}
+
+/* ---------- Cards / panels ---------- */
+body.mk-admin-shell .panel,
+body.mk-admin-shell .widget,
+body.mk-admin-shell .kan-ban-col,
+body.mk-admin-shell .kan-ban-content-wrapper {
+  border: 1px solid rgba(17,24,39,.07) !important;
+  border-radius: var(--mk-admin-radius) !important;
+  box-shadow: var(--mk-admin-shadow) !important;
+  background: var(--mk-admin-card) !important;
+}
+
+body.mk-admin-shell .panel {
+  overflow: visible;
+}
+
+body.mk-admin-shell .panel-heading {
+  border-bottom: 1px solid #eef0f3 !important;
+  background: #fff !important;
+  border-radius: var(--mk-admin-radius) var(--mk-admin-radius) 0 0 !important;
+  padding: 16px 18px !important;
+  font-weight: 750;
+  color: var(--mk-admin-ink) !important;
+}
+
+body.mk-admin-shell .panel-body {
+  padding: 18px !important;
+}
+
+/* ---------- Buttons ---------- */
+body.mk-admin-shell .btn {
+  border-radius: 10px !important;
+  font-weight: 700;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease !important;
+}
+
+body.mk-admin-shell .btn:hover {
+  transform: translateY(-1px);
+}
+
+body.mk-admin-shell .btn-primary {
+  border-color: var(--mk-admin-orange-deep) !important;
+  background: linear-gradient(135deg, #ffb23f, var(--mk-admin-orange)) !important;
+  color: #17120b !important;
+  box-shadow: 0 8px 18px rgba(245,155,35,.18) !important;
+}
+
+body.mk-admin-shell .btn-primary:hover,
+body.mk-admin-shell .btn-primary:focus,
+body.mk-admin-shell .btn-primary:active {
+  border-color: #c96f04 !important;
+  background: linear-gradient(135deg, #ffc05d, #ed8e18) !important;
+  color: #111 !important;
+  box-shadow: 0 11px 24px rgba(245,155,35,.25) !important;
+}
+
+body.mk-admin-shell .btn-default {
+  border-color: #e1e5ea !important;
+  background: #fff !important;
+  color: #465267 !important;
+}
+
+body.mk-admin-shell .btn-default:hover,
+body.mk-admin-shell .btn-default:focus {
+  border-color: #efc47f !important;
+  background: #fff8ee !important;
+  color: #9c5b08 !important;
+}
+
+/* ---------- Forms ---------- */
+body.mk-admin-shell .form-control,
+body.mk-admin-shell .bootstrap-select > .dropdown-toggle,
+body.mk-admin-shell .select2-container .select2-selection {
+  border-radius: 10px !important;
+  border-color: #dfe4ea !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}
+
+body.mk-admin-shell .form-control:focus,
+body.mk-admin-shell .bootstrap-select.open > .dropdown-toggle,
+body.mk-admin-shell .select2-container--focus .select2-selection {
+  border-color: rgba(245,155,35,.78) !important;
+  box-shadow: 0 0 0 3px rgba(245,155,35,.10) !important;
+}
+
+/* ---------- Tables ---------- */
+body.mk-admin-shell .table-responsive,
+body.mk-admin-shell .dataTables_wrapper {
+  border-radius: 13px;
+}
+
+body.mk-admin-shell table.dataTable thead th,
+body.mk-admin-shell .table > thead > tr > th {
+  color: #697588 !important;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e8ebef !important;
+  background: #fafbfc;
+}
+
+body.mk-admin-shell .table > tbody > tr > td {
+  border-top-color: #eef1f4 !important;
+  vertical-align: middle;
+}
+
+body.mk-admin-shell .table-hover > tbody > tr:hover {
+  background: #fffaf3 !important;
+}
+
+/* ---------- Dropdowns / modals ---------- */
+body.mk-admin-shell .dropdown-menu {
+  border: 1px solid rgba(17,24,39,.08) !important;
+  border-radius: 13px !important;
+  box-shadow: 0 18px 42px rgba(17,24,39,.14) !important;
+  padding: 7px !important;
+}
+
+body.mk-admin-shell .dropdown-menu > li > a {
+  border-radius: 8px;
+  color: #465267;
+}
+
+body.mk-admin-shell .dropdown-menu > li > a:hover,
+body.mk-admin-shell .dropdown-menu > li > a:focus,
+body.mk-admin-shell .dropdown-menu > .active > a {
+  color: #8c5106 !important;
+  background: var(--mk-admin-orange-soft) !important;
+}
+
+body.mk-admin-shell .modal-content {
+  border: 0 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 28px 80px rgba(17,24,39,.22) !important;
+  overflow: hidden;
+}
+
+body.mk-admin-shell .modal-header {
+  padding: 18px 20px !important;
+  border-bottom-color: #eef1f4 !important;
+}
+
+body.mk-admin-shell .modal-footer {
+  border-top-color: #eef1f4 !important;
+  background: #fafbfc;
+}
+
+/* ---------- Labels / progress ---------- */
+body.mk-admin-shell .label-primary,
+body.mk-admin-shell .bg-primary {
+  background-color: var(--mk-admin-orange) !important;
+}
+
+body.mk-admin-shell .progress-bar-primary,
+body.mk-admin-shell .progress-bar {
+  background-color: var(--mk-admin-orange);
+}
+
+/* ---------- Dashboard screen options ---------- */
+body.mk-admin-shell .screen-options-btn {
+  border-radius: 0 0 0 12px !important;
+  border: 1px solid #e5e8ed !important;
+  border-top: 0 !important;
+  background: #fff !important;
+  color: #657184 !important;
+  box-shadow: 0 8px 20px rgba(17,24,39,.05);
+}
+
+body.mk-admin-shell .screen-options-btn:hover {
+  color: var(--mk-admin-orange-deep) !important;
+  background: #fff8ee !important;
+}
+
+/* ---------- Scrollbar ---------- */
+body.mk-admin-shell * {
+  scrollbar-width: thin;
+  scrollbar-color: #c9cfd8 transparent;
+}
+
+body.mk-admin-shell *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.mk-admin-shell *::-webkit-scrollbar-thumb {
+  background: #c9cfd8;
+  border-radius: 999px;
+}
+
+body.mk-admin-shell *::-webkit-scrollbar-thumb:hover {
+  background: #aeb7c3;
+}
+
+/* ---------- Compact responsive behavior ---------- */
+@media (max-width: 991px) {
+  body.mk-admin-shell #wrapper .content {
+    padding: 18px 14px 28px !important;
+  }
+
+  body.mk-admin-shell #header {
+    min-height: 60px !important;
+  }
+
+  body.mk-admin-shell #search_input {
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.mk-admin-shell #wrapper .content {
+    padding: 14px 10px 24px !important;
+  }
+
+  body.mk-admin-shell .panel-body {
+    padding: 14px !important;
+  }
+
+  body.mk-admin-shell .modal-content {
+    border-radius: 14px !important;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body.mk-admin-shell *,
+  body.mk-admin-shell *::before,
+  body.mk-admin-shell *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 2: Premium Dashboard
+   ============================================================ */
+
+/* Dashboard layout */
+body.mk-admin-shell .mk-admin-dashboard-page .content {
+  padding-top: 18px !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .content > .row {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+/* Native options button is retained for Perfex behavior, visually minimized
+   because the premium dashboard hero exposes the same action. */
+body.mk-admin-shell .mk-admin-dashboard-page > .screen-options-btn {
+  opacity: .16;
+  transform: translateY(-2px);
+  transition: opacity .18s ease, transform .18s ease !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page > .screen-options-btn:hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero */
+body.mk-admin-shell .mk-admin-dashboard-hero {
+  margin: 0 8px 18px;
+  min-height: 148px;
+  padding: 28px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(245,155,35,.19);
+  border-radius: 22px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(245,155,35,.22), transparent 26%),
+    radial-gradient(circle at 96% 90%, rgba(245,155,35,.10), transparent 28%),
+    linear-gradient(135deg, #11151b 0%, #191e26 56%, #111419 100%);
+  box-shadow: 0 20px 52px rgba(17,24,39,.13);
+}
+
+body.mk-admin-shell .mk-admin-dashboard-hero::after {
+  content: "";
+  position: absolute;
+  right: -68px;
+  top: -98px;
+  width: 270px;
+  height: 270px;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 42px rgba(255,255,255,.018),
+    0 0 0 84px rgba(255,255,255,.012);
+  pointer-events: none;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-hero-copy,
+body.mk-admin-shell .mk-admin-dashboard-hero-meta {
+  position: relative;
+  z-index: 1;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 11px;
+  color: #fbc676;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-kicker-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mk-admin-orange);
+  box-shadow: 0 0 0 5px rgba(245,155,35,.12);
+}
+
+body.mk-admin-shell .mk-admin-dashboard-hero h1 {
+  margin: 0;
+  max-width: 880px;
+  color: #fff;
+  font-size: clamp(26px, 2.1vw, 38px);
+  font-weight: 850;
+  letter-spacing: -.035em;
+  line-height: 1.08;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-wave {
+  color: var(--mk-admin-orange);
+  padding: 0 4px;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-hero p {
+  margin: 11px 0 0;
+  color: #9da8b8;
+  font-size: 14px;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-hero-meta {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-date,
+body.mk-admin-shell .mk-admin-dashboard-options-trigger {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 14px;
+  border-radius: 12px;
+  font-weight: 750;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-date {
+  color: #c7cfda;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.045);
+}
+
+body.mk-admin-shell .mk-admin-dashboard-date i {
+  color: var(--mk-admin-orange);
+}
+
+body.mk-admin-shell .mk-admin-dashboard-options-trigger {
+  border: 1px solid rgba(245,155,35,.34);
+  color: #16120c;
+  background: linear-gradient(135deg, #ffb441, var(--mk-admin-orange));
+  box-shadow: 0 10px 24px rgba(245,155,35,.14);
+  cursor: pointer;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-options-trigger:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #ffc05a, #f2941c);
+  box-shadow: 0 13px 28px rgba(245,155,35,.20);
+}
+
+/* Dashboard columns */
+body.mk-admin-shell .mk-admin-dashboard-zone {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top {
+  margin-top: 0 !important;
+}
+
+/* Widget shell */
+body.mk-admin-shell .mk-admin-dashboard-page .widget,
+body.mk-admin-shell .mk-admin-dashboard-page .panel_s,
+body.mk-admin-shell .mk-admin-dashboard-page .panel {
+  border: 1px solid rgba(17,24,39,.065) !important;
+  border-radius: 17px !important;
+  box-shadow: 0 10px 28px rgba(17,24,39,.055) !important;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .widget:hover,
+body.mk-admin-shell .mk-admin-dashboard-page .panel_s:hover {
+  border-color: rgba(245,155,35,.15) !important;
+  box-shadow: 0 15px 34px rgba(17,24,39,.075) !important;
+}
+
+/* Widget headings */
+body.mk-admin-shell .mk-admin-dashboard-page .widget .panel-heading,
+body.mk-admin-shell .mk-admin-dashboard-page .panel_s .panel-heading {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #edf0f3 !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .widget .panel-heading h4,
+body.mk-admin-shell .mk-admin-dashboard-page .widget .panel-heading h5,
+body.mk-admin-shell .mk-admin-dashboard-page .panel-title {
+  color: #1a2029 !important;
+  font-weight: 800 !important;
+  letter-spacing: -.01em;
+}
+
+/* Top stat cards generated by Perfex */
+body.mk-admin-shell .mk-admin-dashboard-zone-top .widget,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .panel_s {
+  overflow: hidden;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .panel-body {
+  position: relative;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .panel-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  border-radius: 999px;
+  opacity: .9;
+  background: linear-gradient(90deg, var(--mk-admin-orange), rgba(245,155,35,0));
+}
+
+/* Metric cards often use border/card classes instead of panel */
+body.mk-admin-shell .mk-admin-dashboard-zone-top [class*="tw-border"],
+body.mk-admin-shell .mk-admin-dashboard-zone-top [class*="border"] {
+  border-color: #e7eaf0 !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .tw-rounded-md,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .tw-rounded-lg,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .tw-rounded-xl {
+  border-radius: 15px !important;
+}
+
+/* Remove legacy blue from primary dashboard progress where it is visual-only. */
+body.mk-admin-shell .mk-admin-dashboard-page .progress-bar-primary {
+  background: linear-gradient(90deg, #ffad32, var(--mk-admin-orange)) !important;
+}
+
+/* Finance/status cards */
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .progress {
+  height: 6px !important;
+  border-radius: 999px !important;
+  background: #f0f2f5 !important;
+  box-shadow: none !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .progress-bar {
+  border-radius: 999px;
+}
+
+/* Links */
+body.mk-admin-shell .mk-admin-dashboard-page a:not(.btn) {
+  text-decoration: none !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .panel-heading a,
+body.mk-admin-shell .mk-admin-dashboard-page .widget a {
+  transition: color .18s ease !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .panel-heading a:hover,
+body.mk-admin-shell .mk-admin-dashboard-page .widget a:hover {
+  color: var(--mk-admin-orange-deep) !important;
+}
+
+/* Drag handles */
+body.mk-admin-shell .mk-admin-dashboard-page .widget-dragger,
+body.mk-admin-shell .mk-admin-dashboard-page .widget-dragger .fa,
+body.mk-admin-shell .mk-admin-dashboard-page [class*="handle"] {
+  color: #c5ccd5 !important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .widget:hover .widget-dragger {
+  color: var(--mk-admin-orange) !important;
+}
+
+/* Empty states */
+body.mk-admin-shell .mk-admin-dashboard-page .text-muted {
+  color: #9aa4b2 !important;
+}
+
+/* Chart legend / canvases keep their function, but cards breathe more */
+body.mk-admin-shell .mk-admin-dashboard-page canvas {
+  max-width: 100%;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body > canvas {
+  margin-top: 4px;
+}
+
+/* Dashboard cards on small screens */
+@media (max-width: 991px) {
+  body.mk-admin-shell .mk-admin-dashboard-hero {
+    margin: 0 6px 16px;
+    padding: 23px 22px;
+    align-items: flex-start;
+  }
+
+  body.mk-admin-shell .mk-admin-dashboard-hero-meta {
+    min-width: 190px;
+  }
+}
+
+@media (max-width: 767px) {
+  body.mk-admin-shell .mk-admin-dashboard-hero {
+    margin: 0 2px 14px;
+    min-height: 0;
+    padding: 20px 18px;
+    flex-direction: column;
+    border-radius: 18px;
+  }
+
+  body.mk-admin-shell .mk-admin-dashboard-hero h1 {
+    font-size: 25px;
+  }
+
+  body.mk-admin-shell .mk-admin-dashboard-hero-meta {
+    width: 100%;
+    min-width: 0;
+    align-items: stretch;
+  }
+
+  body.mk-admin-shell .mk-admin-dashboard-date,
+  body.mk-admin-shell .mk-admin-dashboard-options-trigger {
+    width: 100%;
+  }
+
+  body.mk-admin-shell .mk-admin-dashboard-zone {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+/* ============================================================
+   Header logo fallback / premium brand treatment
+   ============================================================ */
+
+body.mk-admin-shell #header #logo {
+  display: flex !important;
+  align-items: center;
+  gap: 9px;
+}
+
+body.mk-admin-shell #header #logo .mk-admin-logo-fallback {
+  display: none;
+  align-items: center;
+  gap: 9px;
+  color: #171b22;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+body.mk-admin-shell #header #logo .mk-admin-logo-fallback.is-visible {
+  display: inline-flex;
+}
+
+body.mk-admin-shell .mk-admin-logo-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffb13a, var(--mk-admin-orange));
+  color: #15110a;
+  font-size: 17px;
+  font-weight: 950;
+  box-shadow: 0 8px 20px rgba(245,155,35,.18);
+}
+
+body.mk-admin-shell .mk-admin-logo-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.08;
+}
+
+body.mk-admin-shell .mk-admin-logo-copy strong {
+  color: #171b22;
+  font-size: 15px;
+  letter-spacing: -.02em;
+}
+
+body.mk-admin-shell .mk-admin-logo-copy small {
+  margin-top: 3px;
+  color: #8a94a2;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 2.1
+   Sidebar Staff Profile Visibility Fix
+   ============================================================ */
+
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile,
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile:link,
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile:visited {
+  color:#f8fafc!important;
+  border-color:rgba(255,255,255,.10)!important;
+  background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.035))!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),0 10px 24px rgba(0,0,0,.13)!important;
+}
+
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile:hover,
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile:focus {
+  color:#fff!important;
+  border-color:rgba(245,155,35,.30)!important;
+  background:linear-gradient(135deg,rgba(245,155,35,.12),rgba(255,255,255,.045))!important;
+}
+
+/* Staff name — force high contrast over dark sidebar regardless of Tailwind class. */
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile span.tw-font-semibold,
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile span[class*="tw-font-semibold"] {
+  color:#ffffff!important;
+  opacity:1!important;
+  text-shadow:0 1px 1px rgba(0,0,0,.18);
+}
+
+/* Email / secondary line */
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile span.tw-font-normal,
+body.mk-admin-shell #menu .sidebar-user-profile > a.profile span[class*="tw-font-normal"] {
+  color:#aeb8c6!important;
+  opacity:1!important;
+}
+
+/* Keep profile image visually separated. */
+body.mk-admin-shell #menu .sidebar-user-profile .staff-profile-image-small {
+  border:2px solid rgba(245,155,35,.36)!important;
+  box-shadow:0 0 0 3px rgba(245,155,35,.08)!important;
+}
+
+/* Dropdown remains light and readable. */
+body.mk-admin-shell #menu .sidebar-user-profile .dropdown-menu > li > a {
+  color:#465267!important;
+}
+
+body.mk-admin-shell #menu .sidebar-user-profile .dropdown-menu > li > a:hover,
+body.mk-admin-shell #menu .sidebar-user-profile .dropdown-menu > li > a:focus {
+  color:#8d4e00!important;
+  background:#fff4e3!important;
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 3
+   Executive Stats + Widget System
+   ============================================================ */
+
+/* ---------- Top KPI cards ---------- */
+body.mk-admin-shell .mk-admin-dashboard-zone-top > .row,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .row {
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px!important;
+  margin:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top [class*="col-"] {
+  width:auto!important;
+  float:none!important;
+  padding:0!important;
+  min-width:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .panel_s,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .widget {
+  height:100%!important;
+  margin-bottom:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .panel-body {
+  min-height:132px!important;
+  padding:20px 20px 18px!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border-radius:17px!important;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(245,155,35,.08), transparent 28%),
+    linear-gradient(180deg,#fff 0%,#fcfcfd 100%)!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .panel-body::before {
+  display:none!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .panel-body::after {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  border-radius:17px 17px 0 0;
+  background:linear-gradient(90deg,var(--mk-admin-orange),#ffc66c 65%,transparent);
+}
+
+/* KPI title / number emphasis */
+body.mk-admin-shell .mk-admin-dashboard-zone-top h4,
+body.mk-admin-shell .mk-admin-dashboard-zone-top h5,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .tw-font-medium {
+  color:#202735!important;
+  font-weight:800!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .tw-text-2xl,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .tw-text-xl,
+body.mk-admin-shell .mk-admin-dashboard-zone-top strong {
+  color:#111318!important;
+  font-weight:900!important;
+}
+
+/* KPI icons */
+body.mk-admin-shell .mk-admin-dashboard-zone-top i,
+body.mk-admin-shell .mk-admin-dashboard-zone-top svg {
+  color:#697588!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .progress {
+  height:7px!important;
+  margin-top:14px!important;
+  overflow:hidden!important;
+  border-radius:999px!important;
+  background:#f0f2f5!important;
+}
+
+/* Force blue primary KPI/progress remnants to orange for the brand dashboard */
+body.mk-admin-shell .mk-admin-dashboard-zone-top .bg-primary,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .tw-bg-primary-600,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .progress-bar-primary,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .progress-bar-info {
+  background:linear-gradient(90deg,#ffad34,var(--mk-admin-orange))!important;
+}
+
+/* ---------- Premium widget headers ---------- */
+body.mk-admin-shell .mk-admin-dashboard-widget .panel-heading {
+  position:relative;
+  min-height:62px!important;
+  padding:17px 20px!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-widget .panel-heading::after {
+  content:"";
+  position:absolute;
+  left:20px;
+  bottom:-1px;
+  width:42px;
+  height:2px;
+  border-radius:999px;
+  background:var(--mk-admin-orange);
+  opacity:.92;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-widget .panel-heading i,
+body.mk-admin-shell .mk-admin-dashboard-widget .panel-heading svg {
+  color:#7b8797!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-widget:hover .panel-heading i,
+body.mk-admin-shell .mk-admin-dashboard-widget:hover .panel-heading svg {
+  color:var(--mk-admin-orange)!important;
+}
+
+/* ---------- Overview / finance panels ---------- */
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .row > [class*="col-md-"] {
+  min-width:0;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .tw-border,
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body [class*="tw-border"] {
+  border-color:#e9edf2!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .tw-bg-neutral-50,
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .tw-bg-gray-50 {
+  background:#fafbfc!important;
+}
+
+/* Give compact finance blocks the same premium language */
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .tw-rounded-md,
+body.mk-admin-shell .mk-admin-dashboard-page .panel-body .tw-rounded-lg {
+  border-radius:12px!important;
+}
+
+/* ---------- Right-column cards ---------- */
+body.mk-admin-shell .mk-admin-dashboard-page [data-container="right-4"] .widget,
+body.mk-admin-shell .mk-admin-dashboard-page [data-container="bottom-right-4"] .widget {
+  border-color:rgba(17,24,39,.07)!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page [data-container="right-4"] .panel-body,
+body.mk-admin-shell .mk-admin-dashboard-page [data-container="bottom-right-4"] .panel-body {
+  padding:20px!important;
+}
+
+/* ---------- To-do links / actions ---------- */
+body.mk-admin-shell .mk-admin-dashboard-page .panel-heading a,
+body.mk-admin-shell .mk-admin-dashboard-page .widget .panel-heading a {
+  color:#5c677a!important;
+  font-weight:700;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .panel-heading a:hover,
+body.mk-admin-shell .mk-admin-dashboard-page .widget .panel-heading a:hover {
+  color:var(--mk-admin-orange-deep)!important;
+}
+
+/* ---------- Status lines ---------- */
+body.mk-admin-shell .mk-admin-dashboard-page .text-info,
+body.mk-admin-shell .mk-admin-dashboard-page .text-primary {
+  color:#a35d06!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .label-info,
+body.mk-admin-shell .mk-admin-dashboard-page .label-primary {
+  color:#7b4604!important;
+  background:#fff0d8!important;
+}
+
+/* Keep semantic danger/success colors, but soften them */
+body.mk-admin-shell .mk-admin-dashboard-page .text-danger {
+  color:#d14343!important;
+}
+body.mk-admin-shell .mk-admin-dashboard-page .text-success {
+  color:#23965b!important;
+}
+body.mk-admin-shell .mk-admin-dashboard-page .text-warning {
+  color:#d98200!important;
+}
+
+/* ---------- Chart cards ---------- */
+body.mk-admin-shell .mk-admin-dashboard-page canvas {
+  filter:saturate(.94);
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .chart,
+body.mk-admin-shell .mk-admin-dashboard-page .chartjs-render-monitor {
+  border-radius:12px;
+}
+
+/* ---------- Empty states ---------- */
+body.mk-admin-shell .mk-admin-dashboard-page .mk-admin-empty-state {
+  padding:18px 14px;
+  border:1px dashed #e1e5ea;
+  border-radius:12px;
+  color:#98a2b0!important;
+  background:#fafbfc;
+}
+
+/* ---------- Small visual motion ---------- */
+@media (prefers-reduced-motion:no-preference) {
+  body.mk-admin-shell .mk-admin-dashboard-widget {
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+  }
+
+  body.mk-admin-shell .mk-admin-dashboard-widget:hover {
+    transform:translateY(-2px);
+  }
+}
+
+/* ---------- Responsive dashboard grid ---------- */
+@media (max-width:1199px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top > .row,
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .row {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top > .row,
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .row {
+    grid-template-columns:1fr;
+    gap:10px!important;
+  }
+
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .panel-body {
+    min-height:112px!important;
+    padding:17px!important;
+  }
+}
+
+/* ============================================================
+   General Admin Page Foundation (preparing next phases)
+   ============================================================ */
+
+body.mk-admin-shell .page-title,
+body.mk-admin-shell h4.tw-font-semibold,
+body.mk-admin-shell h4.tw-font-bold {
+  color:#171b22!important;
+  letter-spacing:-.015em;
+}
+
+/* Cleaner tabs */
+body.mk-admin-shell .nav-tabs {
+  border-bottom:1px solid #e8ebef!important;
+}
+
+body.mk-admin-shell .nav-tabs > li > a {
+  border-radius:10px 10px 0 0!important;
+  color:#6d788a!important;
+  font-weight:700;
+}
+
+body.mk-admin-shell .nav-tabs > li > a:hover {
+  color:#9a5806!important;
+  background:#fff8ee!important;
+  border-color:#f0d2a5!important;
+}
+
+body.mk-admin-shell .nav-tabs > li.active > a,
+body.mk-admin-shell .nav-tabs > li.active > a:hover,
+body.mk-admin-shell .nav-tabs > li.active > a:focus {
+  color:#8f5004!important;
+  background:#fff!important;
+  border-color:#e7eaf0 #e7eaf0 #fff!important;
+  box-shadow:inset 0 3px 0 var(--mk-admin-orange)!important;
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 4
+   Core Pages: Customers / Leads / Projects / Tasks
+   ============================================================ */
+
+/* ---------- Shared core-page shell ---------- */
+body.mk-admin-shell .mk-admin-core-page .content {
+  padding-top:22px!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .content > .row:first-child {
+  margin-top:0!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page h4.tw-text-xl,
+body.mk-admin-shell .mk-admin-core-page h4.tw-font-bold {
+  margin-bottom:6px!important;
+  color:#141920!important;
+  font-size:24px!important;
+  font-weight:900!important;
+  letter-spacing:-.035em!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page h4.tw-text-xl + a,
+body.mk-admin-shell .mk-admin-core-page h4.tw-font-bold + a {
+  color:#8792a2!important;
+  font-weight:650!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page h4.tw-text-xl + a:hover,
+body.mk-admin-shell .mk-admin-core-page h4.tw-font-bold + a:hover {
+  color:var(--mk-admin-orange-deep)!important;
+}
+
+/* ---------- Primary action bar ---------- */
+body.mk-admin-shell .mk-admin-core-page ._buttons {
+  margin-bottom:14px!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page ._buttons .btn {
+  min-height:40px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:9px 14px!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page ._buttons .btn-default {
+  background:#fff!important;
+  border-color:#e1e6ec!important;
+  color:#536074!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page ._buttons .btn-default:hover {
+  color:#8d4f03!important;
+  background:#fff7eb!important;
+  border-color:#efc680!important;
+}
+
+/* ---------- Summary / status strips ---------- */
+body.mk-admin-shell .mk-admin-clients-page .tw-grid > div,
+body.mk-admin-shell .mk-admin-leads-page .leads-overview button,
+body.mk-admin-shell .mk-admin-leads-page .leads-overview .label,
+body.mk-admin-shell .mk-admin-tasks-page .task-summary .tw-border,
+body.mk-admin-shell .mk-admin-projects-page [class*="tw-border"] {
+  border-color:#e4e8ee!important;
+}
+
+body.mk-admin-shell .mk-admin-clients-page .tw-grid > div {
+  min-height:68px;
+  border-radius:14px!important;
+  background:
+    radial-gradient(circle at 90% 15%,rgba(245,155,35,.06),transparent 26%),
+    #fff!important;
+  box-shadow:0 8px 22px rgba(17,24,39,.045)!important;
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease!important;
+}
+
+body.mk-admin-shell .mk-admin-clients-page .tw-grid > div:hover {
+  transform:translateY(-2px);
+  border-color:rgba(245,155,35,.28)!important;
+  box-shadow:0 13px 28px rgba(17,24,39,.07)!important;
+}
+
+body.mk-admin-shell .mk-admin-clients-page .tw-grid > div > span:first-child {
+  font-size:19px!important;
+  color:#111318!important;
+}
+
+/* Leads overview chips */
+body.mk-admin-shell .mk-admin-leads-page .leads-overview {
+  padding:18px 20px!important;
+  border:1px solid #e6e9ee!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 9px 26px rgba(17,24,39,.045)!important;
+}
+
+body.mk-admin-shell .mk-admin-leads-page .leads-overview button,
+body.mk-admin-shell .mk-admin-leads-page .leads-overview .label {
+  min-height:36px;
+  border-radius:10px!important;
+}
+
+body.mk-admin-shell .mk-admin-leads-page .leads-overview button:hover {
+  border-color:#efc680!important;
+  background:#fff6e8!important;
+}
+
+/* ---------- Data table container ---------- */
+body.mk-admin-shell .mk-admin-core-page .panel_s {
+  border:1px solid rgba(17,24,39,.065)!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 12px 34px rgba(17,24,39,.06)!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .panel_s > .panel-body {
+  padding:18px!important;
+  border-radius:18px!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .panel-table-full {
+  margin-left:-18px!important;
+  margin-right:-18px!important;
+}
+
+/* Datatable toolbar */
+body.mk-admin-shell .mk-admin-core-page .dataTables_wrapper .dataTables_length select,
+body.mk-admin-shell .mk-admin-core-page .dataTables_wrapper .dataTables_filter input {
+  height:38px!important;
+  border:1px solid #dfe4ea!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .dataTables_wrapper .dataTables_filter input:focus {
+  border-color:rgba(245,155,35,.72)!important;
+  box-shadow:0 0 0 3px rgba(245,155,35,.10)!important;
+}
+
+/* Table */
+body.mk-admin-shell .mk-admin-core-page table.dataTable {
+  border-collapse:separate!important;
+  border-spacing:0!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page table.dataTable thead th {
+  padding:13px 12px!important;
+  color:#6e798a!important;
+  background:#fafbfc!important;
+  border-top:1px solid #edf0f3!important;
+  border-bottom:1px solid #e5e9ee!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page table.dataTable tbody td {
+  padding:13px 12px!important;
+  color:#394659!important;
+  border-top:1px solid #eef1f4!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page table.dataTable tbody tr {
+  transition:background .14s ease!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page table.dataTable tbody tr:hover {
+  background:#fffaf3!important;
+}
+
+/* Table links */
+body.mk-admin-shell .mk-admin-core-page table.dataTable a:not(.btn) {
+  color:#344156!important;
+  font-weight:650;
+}
+
+body.mk-admin-shell .mk-admin-core-page table.dataTable a:not(.btn):hover {
+  color:var(--mk-admin-orange-deep)!important;
+}
+
+/* Pagination */
+body.mk-admin-shell .mk-admin-core-page .pagination > li > a,
+body.mk-admin-shell .mk-admin-core-page .pagination > li > span {
+  margin:0 2px;
+  border-radius:9px!important;
+  border-color:#e1e6ec!important;
+  color:#647086!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .pagination > .active > a,
+body.mk-admin-shell .mk-admin-core-page .pagination > .active > span {
+  border-color:var(--mk-admin-orange)!important;
+  background:var(--mk-admin-orange)!important;
+  color:#17120b!important;
+}
+
+/* ---------- Filters ---------- */
+body.mk-admin-shell .mk-admin-core-page app-filters button,
+body.mk-admin-shell .mk-admin-core-page app-filters .btn {
+  border-radius:10px!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .dropdown-menu {
+  max-width:min(92vw,420px);
+}
+
+/* ---------- Projects stats ---------- */
+body.mk-admin-shell .mk-admin-projects-page ._buttons {
+  padding:14px 16px!important;
+  border:1px solid #e6e9ee!important;
+  border-radius:15px!important;
+  background:#fff!important;
+  box-shadow:0 8px 24px rgba(17,24,39,.04)!important;
+}
+
+body.mk-admin-shell .mk-admin-projects-page ._buttons .tw-hidden.md\:tw-block {
+  border-left:1px solid #edf0f3;
+  padding-left:18px;
+}
+
+/* ---------- Tasks summary ---------- */
+body.mk-admin-shell .mk-admin-tasks-page .tw-mb-6 {
+  margin-bottom:18px!important;
+}
+
+body.mk-admin-shell .mk-admin-tasks-page ._buttons {
+  padding:12px 14px!important;
+  border:1px solid #e6e9ee!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 8px 24px rgba(17,24,39,.04)!important;
+}
+
+body.mk-admin-shell .mk-admin-tasks-page .kan-ban-tab {
+  border-radius:16px!important;
+  background:#f6f8fa!important;
+}
+
+/* ---------- Kanban columns/cards ---------- */
+body.mk-admin-shell .mk-admin-core-page .kan-ban-col {
+  border:1px solid #e3e7ec!important;
+  border-radius:15px!important;
+  background:#f7f9fb!important;
+  box-shadow:none!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .kan-ban-content-wrapper {
+  border:1px solid #e6e9ee!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  box-shadow:0 7px 18px rgba(17,24,39,.045)!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .kan-ban-content-wrapper:hover {
+  border-color:rgba(245,155,35,.25)!important;
+  box-shadow:0 11px 26px rgba(17,24,39,.075)!important;
+}
+
+/* ---------- Semantic blue cleanup for core pages ---------- */
+body.mk-admin-shell .mk-admin-core-page .text-primary,
+body.mk-admin-shell .mk-admin-core-page .text-info:not(.tw-text-info-600) {
+  color:#9a5806!important;
+}
+
+body.mk-admin-shell .mk-admin-core-page .label-primary,
+body.mk-admin-shell .mk-admin-core-page .label-info {
+  color:#7b4708!important;
+  background:#fff1dc!important;
+}
+
+/* Keep native success/danger meanings */
+body.mk-admin-shell .mk-admin-core-page .text-success { color:#238c57!important; }
+body.mk-admin-shell .mk-admin-core-page .text-danger { color:#d14343!important; }
+body.mk-admin-shell .mk-admin-core-page .text-warning { color:#d57c00!important; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:991px) {
+  body.mk-admin-shell .mk-admin-core-page .panel_s > .panel-body {
+    padding:15px!important;
+  }
+
+  body.mk-admin-shell .mk-admin-core-page .panel-table-full {
+    margin-left:-15px!important;
+    margin-right:-15px!important;
+  }
+
+  body.mk-admin-shell .mk-admin-projects-page ._buttons,
+  body.mk-admin-shell .mk-admin-tasks-page ._buttons {
+    padding:11px!important;
+  }
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell .mk-admin-core-page h4.tw-text-xl,
+  body.mk-admin-shell .mk-admin-core-page h4.tw-font-bold {
+    font-size:21px!important;
+  }
+
+  body.mk-admin-shell .mk-admin-core-page ._buttons .btn {
+    min-height:38px;
+  }
+
+  body.mk-admin-shell .mk-admin-core-page .panel_s {
+    border-radius:14px!important;
+  }
+
+  body.mk-admin-shell .mk-admin-core-page .panel_s > .panel-body {
+    border-radius:14px!important;
+  }
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — PHASE 5
+   Detail Experiences: Customer / Project / Task / Lead
+   ============================================================ */
+
+body.mk-admin-shell .mk-admin-detail-page .content,
+body.mk-admin-shell .customer_profile .content { padding-top:22px!important; }
+
+body.mk-admin-shell .mk-admin-detail-page .panel_s,
+body.mk-admin-shell .mk-admin-detail-page .panel,
+body.mk-admin-shell .customer_profile .panel_s,
+body.mk-admin-shell .customer_profile .panel {
+  border:1px solid rgba(17,24,39,.07)!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 12px 34px rgba(17,24,39,.055)!important;
+}
+
+body.mk-admin-shell .mk-admin-detail-page .panel-heading,
+body.mk-admin-shell .customer_profile .panel-heading {
+  min-height:58px; display:flex; align-items:center;
+  border-bottom-color:#edf0f3!important;
+}
+
+body.mk-admin-shell .customer_profile .nav-tabs > li > a {
+  color:#697588!important; font-weight:750!important;
+}
+body.mk-admin-shell .customer_profile .nav-tabs > li.active > a,
+body.mk-admin-shell .customer_profile .nav-tabs > li > a:hover {
+  color:#8e5004!important;
+}
+body.mk-admin-shell .customer_profile h4,
+body.mk-admin-shell .customer_profile h3 {
+  color:#161b22!important; font-weight:850!important; letter-spacing:-.02em;
+}
+
+body.mk-admin-shell .mk-admin-project-detail-page .project-tabs {
+  border:1px solid #e6e9ee!important; border-radius:14px!important;
+  background:#fff!important; box-shadow:0 8px 24px rgba(17,24,39,.045)!important;
+}
+body.mk-admin-shell .mk-admin-project-detail-page .project-tabs .nav-tabs > li > a {
+  padding:11px 13px!important; border-radius:9px!important;
+}
+body.mk-admin-shell .mk-admin-project-detail-page .project-tabs .nav-tabs > li.active > a {
+  background:#fff4e3!important; color:#8f5105!important; border-color:#efc67d!important;
+}
+
+body.mk-admin-shell #task-modal .modal-content,
+body.mk-admin-shell #lead-modal .modal-content {
+  border:1px solid rgba(17,24,39,.06)!important;
+  border-radius:20px!important;
+  box-shadow:0 30px 90px rgba(17,24,39,.25)!important;
+}
+body.mk-admin-shell #task-modal .task-single-header,
+body.mk-admin-shell #lead-modal .modal-header {
+  background:radial-gradient(circle at 92% 12%,rgba(245,155,35,.12),transparent 28%),
+             linear-gradient(180deg,#fff,#fcfcfd)!important;
+}
+body.mk-admin-shell #task-modal .nav-tabs,
+body.mk-admin-shell #lead-modal .nav-tabs {
+  background:#fafbfc; padding:5px; border:1px solid #e9edf2!important; border-radius:12px!important;
+}
+body.mk-admin-shell #task-modal .nav-tabs > li > a,
+body.mk-admin-shell #lead-modal .nav-tabs > li > a {
+  border:0!important; border-radius:8px!important;
+}
+body.mk-admin-shell #task-modal .nav-tabs > li.active > a,
+body.mk-admin-shell #lead-modal .nav-tabs > li.active > a {
+  color:#8d4e00!important; background:#fff1dc!important;
+  box-shadow:inset 0 0 0 1px rgba(245,155,35,.14)!important;
+}
+
+/* ============================================================
+   PHASE 6 — Sales & Support
+   ============================================================ */
+
+body.mk-admin-shell .mk-admin-sales-page .content,
+body.mk-admin-shell .mk-admin-support-page .content { padding-top:22px!important; }
+
+body.mk-admin-shell .mk-admin-sales-page .panel_s,
+body.mk-admin-shell .mk-admin-support-page .panel_s {
+  border-radius:18px!important; border-color:rgba(17,24,39,.07)!important;
+  box-shadow:0 12px 34px rgba(17,24,39,.055)!important;
+}
+
+body.mk-admin-shell .mk-admin-transaction-page .accounting-template,
+body.mk-admin-shell .mk-admin-transaction-page ._transaction_form {
+  max-width:1500px; margin-left:auto; margin-right:auto;
+}
+body.mk-admin-shell .mk-admin-transaction-page .table.items thead th {
+  background:#fafbfc!important; color:#697588!important; font-weight:800!important;
+}
+body.mk-admin-shell .mk-admin-transaction-page .table.items tbody tr:hover {
+  background:#fffaf3!important;
+}
+body.mk-admin-shell .mk-admin-transaction-page .total,
+body.mk-admin-shell .mk-admin-transaction-page .subtotal {
+  font-weight:850!important; color:#171b22!important;
+}
+
+body.mk-admin-shell .mk-admin-ticket-detail-page .tw-bg-gradient-to-r {
+  background:radial-gradient(circle at 92% 12%,rgba(245,155,35,.07),transparent 26%),
+             linear-gradient(90deg,#fafbfc,#fff)!important;
+}
+body.mk-admin-shell .mk-admin-ticket-detail-page .ticket-reply,
+body.mk-admin-shell .mk-admin-ticket-detail-page .ticket-note {
+  border-radius:14px!important; border-color:#e5e9ee!important;
+}
+
+/* ============================================================
+   PHASE 7 — Team / Staff / Settings
+   ============================================================ */
+
+body.mk-admin-shell .mk-admin-team-page .content,
+body.mk-admin-shell .mk-admin-settings-page .content { padding-top:22px!important; }
+
+body.mk-admin-shell .mk-admin-team-page .panel_s,
+body.mk-admin-shell .mk-admin-settings-page .panel_s,
+body.mk-admin-shell .mk-admin-settings-page .settings {
+  border-radius:18px!important; border-color:rgba(17,24,39,.07)!important;
+  box-shadow:0 12px 34px rgba(17,24,39,.055)!important;
+}
+
+body.mk-admin-shell .mk-admin-team-page .staff-profile-image-thumb {
+  border:3px solid rgba(245,155,35,.20)!important;
+  box-shadow:0 6px 18px rgba(17,24,39,.10)!important;
+}
+body.mk-admin-shell .mk-admin-settings-page .settings-group-heading:hover,
+body.mk-admin-shell .mk-admin-settings-page .nav-tabs > li > a:hover,
+body.mk-admin-shell .mk-admin-settings-page .settings-group-heading.active,
+body.mk-admin-shell .mk-admin-settings-page .nav-tabs > li.active > a {
+  color:#8d4e00!important;
+}
+body.mk-admin-shell .mk-admin-settings-page .settings-group-heading.active,
+body.mk-admin-shell .mk-admin-settings-page .nav-tabs > li.active > a {
+  background:#fff4e3!important;
+}
+
+/* ============================================================
+   PHASE 8 — Advanced Motion + WebGL + Performance
+   ============================================================ */
+
+body.mk-admin-shell .mk-admin-dashboard-hero { isolation:isolate; }
+body.mk-admin-shell .mk-admin-dashboard-hero > *:not(.mk-admin-webgl) {
+  position:relative; z-index:2;
+}
+body.mk-admin-shell .mk-admin-webgl {
+  position:absolute; inset:0; width:100%; height:100%; z-index:0;
+  pointer-events:none; opacity:.78; mix-blend-mode:screen;
+}
+
+body.mk-admin-shell .mk-motion-surface { position:relative; overflow:hidden; }
+body.mk-admin-shell .mk-motion-surface::before {
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:0;
+  transition:opacity .24s ease;
+  background:radial-gradient(260px circle at var(--mk-x,50%) var(--mk-y,50%),
+                             rgba(245,155,35,.10), transparent 62%);
+  z-index:0;
+}
+body.mk-admin-shell .mk-motion-surface:hover::before { opacity:1; }
+body.mk-admin-shell .mk-motion-surface > * { position:relative; z-index:1; }
+
+body.mk-admin-shell.mk-motion-enabled .mk-reveal {
+  opacity:0; transform:translate3d(0,12px,0) scale(.992);
+}
+body.mk-admin-shell.mk-motion-enabled .mk-reveal.mk-reveal-visible {
+  opacity:1; transform:translate3d(0,0,0) scale(1);
+  transition:opacity .46s cubic-bezier(.2,.75,.2,1),
+             transform .46s cubic-bezier(.2,.75,.2,1);
+  transition-delay:var(--mk-reveal-delay,0ms);
+}
+
+@media (prefers-reduced-motion:no-preference) {
+  body.mk-admin-shell .modal.fade .modal-dialog {
+    transform:translate3d(0,12px,0) scale(.985);
+    opacity:.96;
+    transition:transform .24s cubic-bezier(.2,.8,.2,1),opacity .22s ease!important;
+  }
+  body.mk-admin-shell .modal.in .modal-dialog {
+    transform:translate3d(0,0,0) scale(1); opacity:1;
+  }
+}
+
+body.mk-admin-shell .btn:not(.btn-link):active { transform:translateY(0) scale(.985)!important; }
+body.mk-admin-shell .mk-gpu-active {
+  will-change:transform,opacity; backface-visibility:hidden;
+}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  body.mk-admin-shell .mk-admin-core-page .panel_s:hover,
+  body.mk-admin-shell .mk-admin-sales-page .panel_s:hover,
+  body.mk-admin-shell .mk-admin-support-page .panel_s:hover,
+  body.mk-admin-shell .mk-admin-team-page .panel_s:hover {
+    transform:translate3d(0,-2px,0);
+    box-shadow:0 17px 42px rgba(17,24,39,.075)!important;
+  }
+}
+
+html { scroll-behavior:auto!important; }
+
+@media (max-width:767px), (pointer:coarse) {
+  body.mk-admin-shell .mk-admin-webgl,
+  body.mk-admin-shell .mk-motion-surface::before { display:none!important; }
+}
+@media (prefers-reduced-motion:reduce) {
+  body.mk-admin-shell .mk-admin-webgl { display:none!important; }
+  body.mk-admin-shell .mk-reveal,
+  body.mk-admin-shell .mk-reveal.mk-reveal-visible {
+    opacity:1!important; transform:none!important; transition:none!important;
+  }
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 9 REAL VISUAL REBUILD
+   Fixes KPI layout + adds application-wide premium page system.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) CRITICAL DASHBOARD KPI FIX
+   Phase 3 accidentally applied CSS grid to every nested .row.
+   Only the direct row inside top_stats must be a grid.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .widget.relative > .row {
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:14px!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .widget.relative > .row > [class*="quick-stats-"] {
+  width:auto!important;
+  float:none!important;
+  min-width:0!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  margin-bottom:0!important;
+}
+
+/* Restore ALL nested Bootstrap rows inside each KPI card. */
+body.mk-admin-shell .mk-admin-dashboard-zone-top .widget.relative > .row > [class*="quick-stats-"] .row {
+  display:block!important;
+  margin-left:-15px!important;
+  margin-right:-15px!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .widget.relative > .row > [class*="quick-stats-"] .row::before,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .widget.relative > .row > [class*="quick-stats-"] .row::after {
+  display:table!important;
+  content:" "!important;
+  clear:both;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .top_stats_wrapper {
+  height:100%!important;
+  min-height:110px!important;
+  padding:20px 20px 17px!important;
+  border:1px solid #e3e8ef!important;
+  border-radius:16px!important;
+  background:
+    radial-gradient(circle at 90% 8%,rgba(245,155,35,.08),transparent 28%),
+    linear-gradient(180deg,#fff,#fcfcfd)!important;
+  box-shadow:0 10px 25px rgba(17,24,39,.055)!important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .top_stats_wrapper:hover {
+  transform:translate3d(0,-3px,0);
+  border-color:rgba(245,155,35,.30)!important;
+  box-shadow:0 18px 38px rgba(17,24,39,.09)!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .top_stats_wrapper .progress {
+  height:7px!important;
+  overflow:hidden!important;
+  border-radius:999px!important;
+  background:#edf1f5!important;
+}
+
+/* No remaining Perfex-blue progress in executive KPI row. */
+body.mk-admin-shell .mk-admin-dashboard-zone-top .top_stats_wrapper .progress-bar {
+  background:linear-gradient(90deg,#ffae34,#f59b23)!important;
+}
+
+@media (max-width:1199px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .widget.relative > .row {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media (max-width:767px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .widget.relative > .row {
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   2) REAL PAGE HERO / COMMAND STRIP
+   Injected on actual working pages, not just the dashboard.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk9-page-hero {
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  margin:0 0 18px;
+  min-height:126px;
+  padding:24px 26px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  border:1px solid rgba(245,155,35,.18);
+  border-radius:20px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 88% 18%,rgba(245,155,35,.17),transparent 30%),
+    linear-gradient(135deg,#12161c 0%,#191e26 64%,#14171c 100%);
+  box-shadow:0 18px 46px rgba(17,24,39,.12);
+}
+
+body.mk-admin-shell .mk9-page-hero::after {
+  content:"";
+  position:absolute;
+  right:-58px;
+  top:-88px;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.05);
+  box-shadow:
+    0 0 0 38px rgba(255,255,255,.015),
+    0 0 0 76px rgba(255,255,255,.010);
+  pointer-events:none;
+}
+
+body.mk-admin-shell .mk9-page-copy,
+body.mk-admin-shell .mk9-page-context {
+  position:relative;
+  z-index:2;
+}
+
+body.mk-admin-shell .mk9-page-kicker {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+  color:#fbc472;
+  font-size:10px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+body.mk-admin-shell .mk9-page-kicker i {
+  width:25px;
+  height:25px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  color:#15110a;
+  background:linear-gradient(135deg,#ffb23e,#f59b23);
+  box-shadow:0 6px 16px rgba(245,155,35,.18);
+}
+
+body.mk-admin-shell .mk9-page-title {
+  margin:0!important;
+  color:#fff!important;
+  font-size:clamp(25px,2vw,34px)!important;
+  font-weight:900!important;
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+}
+
+body.mk-admin-shell .mk9-page-subtitle {
+  margin:9px 0 0;
+  max-width:680px;
+  color:#9fa9b8;
+  font-size:13px;
+  line-height:1.55;
+}
+
+body.mk-admin-shell .mk9-page-context {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  color:#bac3cf;
+  background:rgba(255,255,255,.04);
+  white-space:nowrap;
+}
+
+body.mk-admin-shell .mk9-page-context i {
+  color:#f59b23;
+}
+
+/* ------------------------------------------------------------
+   3) PREMIUM WORKSPACE — visual structure on real pages
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .content {
+  max-width:none!important;
+}
+
+body.mk-admin-shell.mk9-page .content > .row,
+body.mk-admin-shell.mk9-page .content > #vueApp > .row {
+  animation:none!important;
+}
+
+body.mk-admin-shell.mk9-page ._buttons,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar {
+  position:relative;
+  margin-bottom:14px!important;
+  padding:12px!important;
+  border:1px solid rgba(17,24,39,.065)!important;
+  border-radius:14px!important;
+  background:rgba(255,255,255,.92)!important;
+  box-shadow:0 9px 25px rgba(17,24,39,.045)!important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+body.mk-admin-shell.mk9-page .panel_s {
+  border:1px solid rgba(17,24,39,.065)!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 12px 32px rgba(17,24,39,.055)!important;
+}
+
+body.mk-admin-shell.mk9-page .panel_s > .panel-body {
+  border-radius:18px!important;
+}
+
+/* Tables become proper application surfaces */
+body.mk-admin-shell.mk9-page .dataTables_wrapper {
+  padding-top:2px;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable thead th {
+  height:48px;
+  padding:12px 13px!important;
+  color:#7a8595!important;
+  font-size:11px!important;
+  font-weight:850!important;
+  letter-spacing:.055em!important;
+  background:#f8fafb!important;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable tbody td {
+  min-height:50px;
+  padding:13px!important;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable tbody tr {
+  position:relative;
+  background:#fff;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable tbody tr:hover {
+  background:linear-gradient(90deg,#fff8ed,#fff)!important;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable tbody tr:hover td:first-child {
+  box-shadow:inset 3px 0 0 #f59b23;
+}
+
+/* Modern filters */
+body.mk-admin-shell.mk9-page app-filters .btn,
+body.mk-admin-shell.mk9-page .dataTables_filter input,
+body.mk-admin-shell.mk9-page .dataTables_length select {
+  min-height:39px!important;
+  border-radius:10px!important;
+}
+
+/* Buttons feel like a product, not Bootstrap defaults */
+body.mk-admin-shell.mk9-page .btn-primary {
+  position:relative;
+  overflow:hidden;
+}
+
+body.mk-admin-shell.mk9-page .btn-primary::after {
+  content:"";
+  position:absolute;
+  inset:-2px;
+  transform:translateX(-120%) skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  transition:transform .55s ease;
+}
+
+body.mk-admin-shell.mk9-page .btn-primary:hover::after {
+  transform:translateX(120%) skewX(-20deg);
+}
+
+/* ------------------------------------------------------------
+   4) SUMMARY CARDS
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .mk-admin-summary-strip,
+body.mk-admin-shell.mk9-page .leads-overview {
+  border:1px solid #e7ebef!important;
+  border-radius:16px!important;
+  background:
+    radial-gradient(circle at 94% 0%,rgba(245,155,35,.07),transparent 24%),
+    #fff!important;
+  box-shadow:0 10px 28px rgba(17,24,39,.045)!important;
+}
+
+body.mk-admin-shell.mk9-page .mk-admin-summary-strip > * {
+  transition:transform .18s ease,background .18s ease!important;
+}
+
+/* ------------------------------------------------------------
+   5) KANBAN UPGRADE
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .kan-ban-tab {
+  padding:14px!important;
+  border:1px solid #e7ebef!important;
+  border-radius:18px!important;
+  background:
+    linear-gradient(180deg,#f6f8fa,#f3f5f7)!important;
+}
+
+body.mk-admin-shell.mk9-page .kan-ban-col {
+  border:1px solid #e0e5eb!important;
+  border-radius:16px!important;
+  background:#f7f9fb!important;
+}
+
+body.mk-admin-shell.mk9-page .kan-ban-content-wrapper {
+  border:1px solid #e3e8ee!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 8px 20px rgba(17,24,39,.05)!important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+
+body.mk-admin-shell.mk9-page .kan-ban-content-wrapper:hover {
+  transform:translate3d(0,-3px,0);
+  border-color:rgba(245,155,35,.28)!important;
+  box-shadow:0 14px 30px rgba(17,24,39,.085)!important;
+}
+
+/* ------------------------------------------------------------
+   6) MODALS — advanced sheet-like appearance
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .modal-content {
+  border:1px solid rgba(17,24,39,.055)!important;
+  border-radius:20px!important;
+  box-shadow:0 32px 100px rgba(17,24,39,.28)!important;
+}
+
+body.mk-admin-shell .modal-header {
+  min-height:64px;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(circle at 92% 0%,rgba(245,155,35,.09),transparent 24%),
+    #fff!important;
+}
+
+body.mk-admin-shell .modal-footer {
+  padding:13px 18px!important;
+  background:#fafbfc!important;
+}
+
+/* ------------------------------------------------------------
+   7) INPUTS / SELECTS
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .form-control,
+body.mk-admin-shell.mk9-page .bootstrap-select > .dropdown-toggle,
+body.mk-admin-shell.mk9-page .select2-selection {
+  min-height:42px;
+  border-radius:11px!important;
+  border-color:#dfe4ea!important;
+  background:#fff!important;
+}
+
+body.mk-admin-shell.mk9-page textarea.form-control {
+  min-height:110px;
+}
+
+/* ------------------------------------------------------------
+   8) ROUTE ACCENT
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-customers { --mk9-route-accent:#f59b23; }
+body.mk-admin-shell.mk9-leads     { --mk9-route-accent:#ffab2e; }
+body.mk-admin-shell.mk9-projects  { --mk9-route-accent:#f59b23; }
+body.mk-admin-shell.mk9-tasks     { --mk9-route-accent:#ff9a1f; }
+body.mk-admin-shell.mk9-sales     { --mk9-route-accent:#e98a11; }
+body.mk-admin-shell.mk9-support   { --mk9-route-accent:#f2a027; }
+body.mk-admin-shell.mk9-team      { --mk9-route-accent:#f59b23; }
+body.mk-admin-shell.mk9-settings  { --mk9-route-accent:#e98a11; }
+
+/* ------------------------------------------------------------
+   9) RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width:991px) {
+  body.mk-admin-shell .mk9-page-hero {
+    min-height:112px;
+    padding:21px;
+  }
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell .mk9-page-hero {
+    min-height:0;
+    padding:19px 17px;
+    flex-direction:column;
+    align-items:flex-start;
+    border-radius:17px;
+  }
+
+  body.mk-admin-shell .mk9-page-context {
+    width:100%;
+    justify-content:flex-start;
+  }
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — PHASE 10 HEAVY REBUILD
+   KPI repair + dark command bars + dashboard options +
+   robust DataTables system + stronger workspace contrast.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   A) FINAL KPI LAYOUT — direct markup hook, no broad selectors.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid {
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:14px!important;
+  margin:0!important;
+  width:100%!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-item {
+  width:auto!important;
+  max-width:none!important;
+  float:none!important;
+  clear:none!important;
+  padding:0!important;
+  margin:0!important;
+  min-width:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-item .top_stats_wrapper {
+  position:relative;
+  width:100%!important;
+  height:100%!important;
+  min-height:116px!important;
+  margin:0!important;
+  padding:20px 20px 18px!important;
+  overflow:hidden;
+  border:1px solid #e1e6ec!important;
+  border-radius:17px!important;
+  background:
+    radial-gradient(circle at 92% 10%,rgba(245,155,35,.09),transparent 26%),
+    linear-gradient(180deg,#fff,#fcfcfd)!important;
+  box-shadow:0 12px 28px rgba(17,24,39,.055)!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-item .top_stats_wrapper::before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:linear-gradient(180deg,#ffb541,#f18c16);
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-item .top_stats_wrapper > .tw-text-neutral-800 {
+  margin-top:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-item .top_stats_wrapper svg {
+  color:#667286!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-item .top_stats_wrapper .progress {
+  height:7px!important;
+  margin-top:18px!important;
+  overflow:hidden!important;
+  border-radius:999px!important;
+  background:#edf1f5!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-item .top_stats_wrapper .progress-bar {
+  background:linear-gradient(90deg,#ffb33c,#f59b23)!important;
+}
+
+@media (max-width:1199px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid {
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   B) DASHBOARD OPTIONS — no more old vertical checkbox list.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .screen-options-area {
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options {
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:14px 18px 18px!important;
+  padding:16px!important;
+  border:1px solid rgba(245,155,35,.18)!important;
+  border-radius:18px!important;
+  background:
+    radial-gradient(circle at 92% 0%,rgba(245,155,35,.14),transparent 26%),
+    linear-gradient(135deg,#11151b,#191e25)!important;
+  box-shadow:0 18px 44px rgba(17,24,39,.16)!important;
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options > .tw-flex {
+  grid-column:1/-1;
+  min-height:48px;
+  margin:0 0 3px!important;
+  padding:0 4px 12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options > .tw-flex h4 {
+  margin:0!important;
+  color:#fff!important;
+  font-weight:850!important;
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options > .tw-flex a {
+  color:#f7bd67!important;
+  font-weight:700!important;
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options > .checkbox {
+  min-height:52px;
+  margin:0!important;
+  padding:10px 12px!important;
+  display:flex;
+  align-items:center;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:11px;
+  background:rgba(255,255,255,.045);
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options > .checkbox:hover {
+  transform:translateY(-1px);
+  border-color:rgba(245,155,35,.26);
+  background:rgba(245,155,35,.08);
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options > .checkbox label {
+  margin:0!important;
+  color:#d8dee7!important;
+  font-size:13px!important;
+  font-weight:700!important;
+}
+
+body.mk-admin-shell .screen-options-area #dashboard-options > .checkbox input[type="checkbox"] {
+  accent-color:#f59b23;
+}
+
+@media (max-width:1100px) {
+  body.mk-admin-shell .screen-options-area #dashboard-options {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media (max-width:800px) {
+  body.mk-admin-shell .screen-options-area #dashboard-options {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width:520px) {
+  body.mk-admin-shell .screen-options-area #dashboard-options {
+    grid-template-columns:1fr;
+    margin:10px!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   C) DARK COMMAND BARS — stronger black/orange visual language.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page ._buttons,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar {
+  padding:13px 14px!important;
+  border:1px solid rgba(245,155,35,.16)!important;
+  border-radius:16px!important;
+  background:
+    radial-gradient(circle at 92% 0%,rgba(245,155,35,.10),transparent 24%),
+    linear-gradient(135deg,#14181f,#1b2028)!important;
+  box-shadow:0 13px 32px rgba(17,24,39,.10)!important;
+}
+
+body.mk-admin-shell.mk9-page ._buttons .btn-default,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar .btn-default {
+  color:#dde3eb!important;
+  border-color:rgba(255,255,255,.10)!important;
+  background:rgba(255,255,255,.055)!important;
+}
+
+body.mk-admin-shell.mk9-page ._buttons .btn-default:hover,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar .btn-default:hover {
+  color:#fff!important;
+  border-color:rgba(245,155,35,.32)!important;
+  background:rgba(245,155,35,.12)!important;
+}
+
+body.mk-admin-shell.mk9-page ._buttons .tw-text-neutral-500,
+body.mk-admin-shell.mk9-page ._buttons .tw-text-neutral-600,
+body.mk-admin-shell.mk9-page ._buttons .text-muted {
+  color:#aeb8c6!important;
+}
+
+/* Status/stat chips embedded in command bars */
+body.mk-admin-shell.mk9-page ._buttons [class*="tw-border"],
+body.mk-admin-shell.mk9-page ._buttons .label,
+body.mk-admin-shell.mk9-page ._buttons .badge {
+  border-color:rgba(255,255,255,.11)!important;
+  background:rgba(255,255,255,.055)!important;
+}
+
+/* Vue filter button */
+body.mk-admin-shell.mk9-page ._buttons app-filters .btn,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar app-filters .btn {
+  color:#e2e8ef!important;
+  border-color:rgba(255,255,255,.11)!important;
+  background:rgba(255,255,255,.05)!important;
+}
+
+/* ------------------------------------------------------------
+   D) ROBUST DATATABLE SYSTEM — no clipped first/last columns.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .panel-table-full {
+  margin-left:0!important;
+  margin-right:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+  -webkit-overflow-scrolling:touch;
+  border-radius:13px;
+}
+
+body.mk-admin-shell .dataTables_wrapper {
+  width:100%!important;
+  max-width:100%!important;
+}
+
+body.mk-admin-shell table.dataTable {
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+body.mk-admin-shell table.dataTable.mk10-wide-table {
+  min-width:1040px!important;
+}
+
+body.mk-admin-shell table.dataTable thead th:first-child,
+body.mk-admin-shell table.dataTable tbody td:first-child {
+  padding-left:17px!important;
+}
+
+body.mk-admin-shell table.dataTable thead th:last-child,
+body.mk-admin-shell table.dataTable tbody td:last-child {
+  padding-right:17px!important;
+}
+
+body.mk-admin-shell .dataTables_scroll,
+body.mk-admin-shell .dataTables_scrollHead,
+body.mk-admin-shell .dataTables_scrollBody {
+  max-width:100%!important;
+}
+
+body.mk-admin-shell .dataTables_scrollBody {
+  overflow-x:auto!important;
+}
+
+/* Header contrast */
+body.mk-admin-shell.mk9-page table.dataTable thead th {
+  color:#d7dee8!important;
+  background:#1b2027!important;
+  border-color:#2a3039!important;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable thead th:first-child {
+  border-radius:10px 0 0 0;
+}
+body.mk-admin-shell.mk9-page table.dataTable thead th:last-child {
+  border-radius:0 10px 0 0;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable tbody tr:nth-child(even) {
+  background:#fcfcfd;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable tbody tr:hover {
+  background:linear-gradient(90deg,#fff5e5,#fff)!important;
+}
+
+/* Keep links legible */
+body.mk-admin-shell.mk9-page table.dataTable tbody a:not(.btn) {
+  color:#243247!important;
+  font-weight:700!important;
+}
+
+body.mk-admin-shell.mk9-page table.dataTable tbody a:not(.btn):hover {
+  color:#a45c05!important;
+}
+
+/* ------------------------------------------------------------
+   E) TABLE CONTROL STRIP
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .dataTables_wrapper > .row:first-child,
+body.mk-admin-shell.mk9-page .dataTables_wrapper .dataTables_length,
+body.mk-admin-shell.mk9-page .dataTables_wrapper .dataTables_filter {
+  color:#687588!important;
+}
+
+body.mk-admin-shell.mk9-page .dataTables_wrapper .dataTables_length select,
+body.mk-admin-shell.mk9-page .dataTables_wrapper .dataTables_filter input {
+  border:1px solid #dfe5eb!important;
+  background:#fff!important;
+}
+
+/* ------------------------------------------------------------
+   F) WHITE TABLE CARD + BLACK SEPARATOR
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .panel_s:has(table.dataTable) {
+  position:relative;
+  overflow:hidden;
+}
+
+body.mk-admin-shell.mk9-page .panel_s:has(table.dataTable)::before {
+  content:"";
+  display:block;
+  height:4px;
+  margin:-18px -18px 14px;
+  background:linear-gradient(90deg,#11151b 0%,#282e36 62%,#f59b23 100%);
+}
+
+/* ------------------------------------------------------------
+   G) PROJECT / TASK / LEAD KANBAN DARK HEADERS
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .kan-ban-col {
+  overflow:hidden!important;
+}
+
+body.mk-admin-shell.mk9-page .kan-ban-col .panel-heading,
+body.mk-admin-shell.mk9-page .kan-ban-col .kan-ban-col-header {
+  color:#fff!important;
+  background:linear-gradient(135deg,#171b21,#232932)!important;
+}
+
+/* ------------------------------------------------------------
+   H) PERFORMANCE — table painting & long pages
+   ------------------------------------------------------------ */
+
+@supports (content-visibility:auto) {
+  body.mk-admin-shell.mk9-page table.dataTable tbody tr {
+    content-visibility:auto;
+    contain-intrinsic-size:52px;
+  }
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 10.1 Runtime Stabilization
+   Built from the user's runtime video, not assumptions.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) DASHBOARD KPI — HARD RESET OF OLD PHASE-3 GRID SIDE EFFECT
+   ------------------------------------------------------------ */
+
+/* Neutralize the historical broad selector that turned ALL rows into grids. */
+body.mk-admin-shell .mk-admin-dashboard-zone-top .row {
+  display:block!important;
+  grid-template-columns:none!important;
+  gap:0!important;
+}
+
+/* Only the actual KPI row may be flex. */
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid {
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:stretch!important;
+  gap:14px!important;
+  width:100%!important;
+  margin:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid::before,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid::after {
+  display:none!important;
+  content:none!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid > .mk10-kpi-item,
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid > [class*="quick-stats-"] {
+  flex:1 1 0!important;
+  width:0!important;
+  max-width:none!important;
+  float:none!important;
+  clear:none!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid .top_stats_wrapper {
+  min-width:0!important;
+  width:100%!important;
+}
+
+/* Restore nested Bootstrap rows inside cards and widgets. */
+body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid .row {
+  display:block!important;
+  margin-left:-15px!important;
+  margin-right:-15px!important;
+}
+
+@media (max-width:1199px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid {
+    flex-wrap:wrap!important;
+  }
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid > .mk10-kpi-item,
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid > [class*="quick-stats-"] {
+    flex:1 1 calc(50% - 7px)!important;
+    width:calc(50% - 7px)!important;
+  }
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid > .mk10-kpi-item,
+  body.mk-admin-shell .mk-admin-dashboard-zone-top .mk10-kpi-grid > [class*="quick-stats-"] {
+    flex:1 1 100%!important;
+    width:100%!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   2) DASHBOARD OPTIONS — STYLE WHATEVER PERFEX INJECTS
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .screen-options-area:not(:empty) {
+  margin:14px 18px 18px!important;
+  padding:18px!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+  align-items:stretch!important;
+  border:1px solid rgba(245,155,35,.18)!important;
+  border-radius:18px!important;
+  background:
+    radial-gradient(circle at 92% 0%,rgba(245,155,35,.14),transparent 26%),
+    linear-gradient(135deg,#11151b,#191e25)!important;
+  box-shadow:0 18px 44px rgba(17,24,39,.16)!important;
+}
+
+body.mk-admin-shell .screen-options-area:not(:empty) > h4,
+body.mk-admin-shell .screen-options-area:not(:empty) > .tw-flex,
+body.mk-admin-shell .screen-options-area:not(:empty) > div:first-child {
+  flex:0 0 100%;
+}
+
+body.mk-admin-shell .screen-options-area:not(:empty) h4 {
+  margin:0!important;
+  color:#fff!important;
+  font-weight:900!important;
+}
+
+body.mk-admin-shell .screen-options-area:not(:empty) a {
+  color:#f7bd67!important;
+  font-weight:750!important;
+}
+
+body.mk-admin-shell .screen-options-area:not(:empty) > .checkbox,
+body.mk-admin-shell .screen-options-area:not(:empty) .checkbox {
+  flex:1 1 calc(25% - 10px);
+  min-width:220px;
+  margin:0!important;
+  padding:11px 13px!important;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:11px;
+  background:rgba(255,255,255,.045);
+}
+
+body.mk-admin-shell .screen-options-area:not(:empty) .checkbox label {
+  margin:0!important;
+  color:#d9e0e8!important;
+  font-weight:700!important;
+}
+
+body.mk-admin-shell .screen-options-area:not(:empty) input[type="checkbox"] {
+  accent-color:#f59b23;
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell .screen-options-area:not(:empty) {
+    margin:10px!important;
+  }
+  body.mk-admin-shell .screen-options-area:not(:empty) > .checkbox,
+  body.mk-admin-shell .screen-options-area:not(:empty) .checkbox {
+    flex:1 1 100%;
+    min-width:100%;
+  }
+}
+
+/* ------------------------------------------------------------
+   3) DASHBOARD WIDGETS — BETTER CONTRAST AND RHYTHM
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk-admin-dashboard-page .finance-summary > .panel_s,
+body.mk-admin-shell .mk-admin-dashboard-page .todo-panel,
+body.mk-admin-shell .mk-admin-dashboard-page .widget > .panel_s {
+  overflow:hidden!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .finance-summary > .panel_s::before,
+body.mk-admin-shell .mk-admin-dashboard-page .todo-panel::before {
+  content:"";
+  display:block;
+  height:3px;
+  background:linear-gradient(90deg,#15191f 0%,#2a3038 64%,#f59b23 100%);
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .finance-summary .home-summary > [class*="col-"] {
+  position:relative;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .finance-summary .home-summary > [class*="col-"]:not(:last-child)::after {
+  content:"";
+  position:absolute;
+  right:0;
+  top:4px;
+  bottom:4px;
+  width:1px;
+  background:#edf0f3;
+}
+
+/* ------------------------------------------------------------
+   4) CORE PAGE COMMAND AREA — REMOVE OVERSTACKED BLACK BARS
+   Keep one clear black command bar, not black-on-black everywhere.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-page .mk9-page-hero {
+  margin-bottom:14px!important;
+}
+
+body.mk-admin-shell.mk9-page ._buttons,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar {
+  margin-top:0!important;
+  margin-bottom:14px!important;
+}
+
+/* Project detail already has its own black project header.
+   Do not visually double-stack the generic route hero there. */
+body.mk-admin-shell .mk-admin-project-detail-page .mk9-page-hero {
+  display:none!important;
+}
+
+/* ------------------------------------------------------------
+   5) DATATABLE STABILITY — FIX CLIPPING / MISSING EDGES
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .panel-table-full,
+body.mk-admin-shell .table-responsive,
+body.mk-admin-shell .dataTables_wrapper {
+  min-width:0!important;
+  max-width:100%!important;
+}
+
+body.mk-admin-shell .panel-table-full {
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+  scrollbar-gutter:stable both-edges;
+}
+
+body.mk-admin-shell table.dataTable {
+  table-layout:auto!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+}
+
+body.mk-admin-shell table.dataTable th,
+body.mk-admin-shell table.dataTable td {
+  box-sizing:border-box!important;
+  vertical-align:middle!important;
+}
+
+body.mk-admin-shell table.dataTable th {
+  white-space:nowrap!important;
+}
+
+body.mk-admin-shell table.dataTable td {
+  white-space:nowrap;
+}
+
+body.mk-admin-shell table.dataTable td[data-title*="Name"],
+body.mk-admin-shell table.dataTable td[data-title*="Subject"],
+body.mk-admin-shell table.dataTable td[data-title*="Description"] {
+  white-space:normal!important;
+}
+
+/* Protect first and final columns from clipping. */
+body.mk-admin-shell table.dataTable thead th:first-child,
+body.mk-admin-shell table.dataTable tbody td:first-child {
+  padding-left:18px!important;
+}
+
+body.mk-admin-shell table.dataTable thead th:last-child,
+body.mk-admin-shell table.dataTable tbody td:last-child {
+  padding-right:18px!important;
+}
+
+/* Tables with many columns get deliberate minimum width. */
+body.mk-admin-shell table.dataTable.mk10-wide-table {
+  min-width:1180px!important;
+}
+
+/* DataTables controls should never overlay the table. */
+body.mk-admin-shell .dataTables_wrapper .row:first-child {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  margin-bottom:10px!important;
+}
+
+body.mk-admin-shell .dataTables_wrapper .row:first-child::before,
+body.mk-admin-shell .dataTables_wrapper .row:first-child::after {
+  display:none!important;
+}
+
+body.mk-admin-shell .dataTables_wrapper .row:first-child > [class*="col-"] {
+  width:auto!important;
+  float:none!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  flex:0 1 auto;
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell .dataTables_wrapper .row:first-child {
+    align-items:stretch!important;
+    flex-direction:column!important;
+  }
+  body.mk-admin-shell .dataTables_wrapper .row:first-child > [class*="col-"] {
+    width:100%!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   6) PROJECT DETAIL TABS/TABLES — VIDEO-SPECIFIC CLEANUP
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk-admin-project-detail-page .project-tabs {
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-width:thin;
+}
+
+body.mk-admin-shell .mk-admin-project-detail-page .project-tabs .nav-tabs {
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  min-width:max-content;
+}
+
+body.mk-admin-shell .mk-admin-project-detail-page .project-tabs .nav-tabs > li {
+  float:none!important;
+}
+
+body.mk-admin-shell .mk-admin-project-detail-page .panel_s {
+  overflow:visible!important;
+}
+
+/* ------------------------------------------------------------
+   7) SMALL VISUAL CLEANUP
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .pagination > li > a,
+body.mk-admin-shell .pagination > li > span {
+  min-width:34px;
+  min-height:34px;
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+}
+
+body.mk-admin-shell .dataTables_info {
+  color:#7a8595!important;
+  padding-top:12px!important;
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 10.2
+   Three Runtime Errors Fix
+   1) Sales toolbar height/alignment
+   2) Sidebar submenu leaking into white content area
+   3) Blue focus ring on Filters
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) SALES TOOLBAR — real flex layout instead of floated children
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-sales ._buttons,
+body.mk-admin-shell.mk9-sales .mk-admin-page-toolbar {
+  min-height:64px!important;
+  padding:10px 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  overflow:visible!important;
+}
+
+body.mk-admin-shell.mk9-sales ._buttons::before,
+body.mk-admin-shell.mk9-sales ._buttons::after,
+body.mk-admin-shell.mk9-sales .mk-admin-page-toolbar::before,
+body.mk-admin-shell.mk9-sales .mk-admin-page-toolbar::after {
+  display:none!important;
+  content:none!important;
+}
+
+body.mk-admin-shell.mk9-sales ._buttons > .pull-left,
+body.mk-admin-shell.mk9-sales ._buttons > a.pull-left,
+body.mk-admin-shell.mk9-sales ._buttons > button.pull-left {
+  float:none!important;
+  margin:0!important;
+}
+
+body.mk-admin-shell.mk9-sales ._buttons > .pull-right,
+body.mk-admin-shell.mk9-sales ._buttons > div.pull-right,
+body.mk-admin-shell.mk9-sales ._buttons > .display-block.pull-right {
+  float:none!important;
+  margin-left:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+
+body.mk-admin-shell.mk9-sales ._buttons #vueApp {
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+
+body.mk-admin-shell.mk9-sales ._buttons .btn,
+body.mk-admin-shell.mk9-sales ._buttons app-filters .btn {
+  height:42px!important;
+  min-height:42px!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+body.mk-admin-shell.mk9-sales ._buttons .clearfix {
+  display:none!important;
+}
+
+/* Proposal/Invoice/Estimate tables sit clearly below toolbar. */
+body.mk-admin-shell.mk9-sales ._buttons + .clearfix,
+body.mk-admin-shell.mk9-sales ._buttons ~ .clearfix {
+  height:0!important;
+  min-height:0!important;
+  margin:0!important;
+}
+
+/* Mobile: actions remain usable, never overlap. */
+@media (max-width:767px) {
+  body.mk-admin-shell.mk9-sales ._buttons,
+  body.mk-admin-shell.mk9-sales .mk-admin-page-toolbar {
+    align-items:stretch!important;
+  }
+
+  body.mk-admin-shell.mk9-sales ._buttons > .pull-right,
+  body.mk-admin-shell.mk9-sales ._buttons > div.pull-right,
+  body.mk-admin-shell.mk9-sales ._buttons > .display-block.pull-right {
+    width:100%!important;
+    margin-left:0!important;
+    justify-content:flex-start!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   2) SIDEBAR — keep every expanded submenu inside dark rail
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell #menu.sidebar {
+  position:fixed!important;
+  top:66px!important;
+  bottom:0!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(245,155,35,.09),transparent 28%),
+    linear-gradient(180deg,#111419 0%,#171b22 100%)!important;
+}
+
+body.mk-admin-shell #menu.sidebar::-webkit-scrollbar {
+  width:6px;
+}
+
+body.mk-admin-shell #menu.sidebar::-webkit-scrollbar-track {
+  background:transparent;
+}
+
+body.mk-admin-shell #menu.sidebar::-webkit-scrollbar-thumb {
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+}
+
+body.mk-admin-shell #menu.sidebar #side-menu,
+body.mk-admin-shell #menu.sidebar #side-menu > li,
+body.mk-admin-shell #menu.sidebar .nav-second-level {
+  background:transparent!important;
+}
+
+body.mk-admin-shell #menu.sidebar .nav-second-level {
+  position:static!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+
+body.mk-admin-shell #menu.sidebar .nav-second-level > li > a {
+  color:#aeb8c6!important;
+}
+
+body.mk-admin-shell #menu.sidebar .nav-second-level > li > a:hover,
+body.mk-admin-shell #menu.sidebar .nav-second-level > li.active > a {
+  color:#fff!important;
+  background:rgba(245,155,35,.08)!important;
+}
+
+/* Ensure Setup/Reports and long utility groups stay inside sidebar canvas. */
+body.mk-admin-shell #menu.sidebar #side-menu {
+  padding-bottom:34px!important;
+}
+
+/* Match content/header offset with fixed sidebar without changing wrapper width. */
+@media (max-width:767px) {
+  body.mk-admin-shell #menu.sidebar {
+    top:60px!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   3) FILTER FOCUS — remove Bootstrap/browser blue ring
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell app-filters button:focus,
+body.mk-admin-shell app-filters .btn:focus,
+body.mk-admin-shell app-filters button:active,
+body.mk-admin-shell app-filters .btn:active,
+body.mk-admin-shell app-filters button:focus-visible,
+body.mk-admin-shell app-filters .btn:focus-visible {
+  outline:none!important;
+  border-color:#f0ad4e!important;
+  box-shadow:
+    0 0 0 3px rgba(245,155,35,.20),
+    0 8px 18px rgba(17,24,39,.08)!important;
+}
+
+body.mk-admin-shell app-filters button:hover,
+body.mk-admin-shell app-filters .btn:hover {
+  border-color:#efb65f!important;
+}
+
+/* Sales dark command-bar filter keeps dark surface when focused. */
+body.mk-admin-shell.mk9-sales ._buttons app-filters button:focus,
+body.mk-admin-shell.mk9-sales ._buttons app-filters .btn:focus,
+body.mk-admin-shell.mk9-sales ._buttons app-filters button:focus-visible,
+body.mk-admin-shell.mk9-sales ._buttons app-filters .btn:focus-visible {
+  color:#fff!important;
+  background:rgba(245,155,35,.12)!important;
+  border-color:#f0ad4e!important;
+  box-shadow:0 0 0 3px rgba(245,155,35,.18)!important;
+}
+
+/* ------------------------------------------------------------
+   Small sales table polish visible in screenshot
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell.mk9-sales .panel_s {
+  overflow:hidden!important;
+}
+
+body.mk-admin-shell.mk9-sales .panel_s .panel-body {
+  padding-top:18px!important;
+}
+
+body.mk-admin-shell.mk9-sales table.dataTable thead th {
+  height:58px!important;
+}
+
+body.mk-admin-shell.mk9-sales .pagination > .active > a,
+body.mk-admin-shell.mk9-sales .pagination > .active > span {
+  color:#17120b!important;
+  background:#f59b23!important;
+  border-color:#f59b23!important;
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 10.3
+   Sticky Header + Dashboard Options + Global Filters Fix
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) HEADER / SIDEBAR SCROLL COORDINATION
+   Keep the header visible so the fixed sidebar never leaves an empty
+   white strip above itself while the page scrolls.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell #header {
+  position:sticky!important;
+  top:0!important;
+  z-index:1200!important;
+}
+
+body.mk-admin-shell #menu.sidebar {
+  top:66px!important;
+  z-index:1050!important;
+}
+
+/* Give the sticky header a stronger separation while content moves under it. */
+body.mk-admin-shell #header::after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:1px;
+  background:rgba(17,24,39,.07);
+  pointer-events:none;
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell #menu.sidebar {
+    top:60px!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   2) DASHBOARD OPTIONS
+   The widget list is hidden on initial load and only opened through
+   Dashboard Options. Hide the old floating native trigger; the premium
+   hero button still triggers it programmatically.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk-admin-dashboard-page > .screen-options-btn {
+  display:none!important;
+}
+
+body.mk-admin-shell .mk-admin-dashboard-page .screen-options-area {
+  margin-top:0!important;
+}
+
+/* When opened, make it part of the normal dashboard flow. */
+body.mk-admin-shell .mk-admin-dashboard-page .screen-options-area[style*="display: block"],
+body.mk-admin-shell .mk-admin-dashboard-page .screen-options-area[style*="display:block"] {
+  position:relative!important;
+  z-index:20!important;
+}
+
+/* ------------------------------------------------------------
+   3) GLOBAL APP-FILTERS DROPDOWN FIX
+   Applies to Projects, Customers, Leads, Tasks, Sales, Tickets, Expenses,
+   Contracts and every other page using <app-filters>.
+   ------------------------------------------------------------ */
+
+/* Never let command bars clip a dropdown. */
+body.mk-admin-shell ._buttons,
+body.mk-admin-shell .mk-admin-page-toolbar {
+  overflow:visible!important;
+}
+
+/* Put command bars above the following table card. */
+body.mk-admin-shell.mk9-page ._buttons,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar {
+  position:relative!important;
+  z-index:80!important;
+}
+
+/* Vue root and Bootstrap btn-group must establish the dropdown stacking context. */
+body.mk-admin-shell app-filters {
+  position:relative!important;
+  z-index:120!important;
+  display:inline-block;
+}
+
+body.mk-admin-shell app-filters > .btn-group,
+body.mk-admin-shell app-filters .btn-group {
+  position:relative!important;
+  z-index:121!important;
+  overflow:visible!important;
+}
+
+/* Force an opened Bootstrap dropdown to be visible above tables/cards. */
+body.mk-admin-shell app-filters .btn-group.open > .dropdown-menu,
+body.mk-admin-shell app-filters .open > .dropdown-menu {
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  z-index:5000!important;
+  transform:none!important;
+  pointer-events:auto!important;
+}
+
+/* The actual saved-filters dropdown. */
+body.mk-admin-shell app-filters .dropdown-menu {
+  min-width:300px!important;
+  max-width:min(360px,calc(100vw - 30px))!important;
+  overflow-x:hidden!important;
+  border:1px solid rgba(17,24,39,.09)!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  box-shadow:0 22px 60px rgba(17,24,39,.22)!important;
+}
+
+/* Ensure the table/card below never sits above the filter dropdown. */
+body.mk-admin-shell.mk9-page ._buttons + .clearfix + .row,
+body.mk-admin-shell.mk9-page ._buttons ~ .panel_s,
+body.mk-admin-shell.mk9-page .mk-admin-page-toolbar ~ .panel_s {
+  position:relative;
+  z-index:1;
+}
+
+/* ------------------------------------------------------------
+   4) FILTER BUTTON — ZERO BLUE, including Bootstrap and browser focus
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell app-filters .dropdown-toggle,
+body.mk-admin-shell app-filters .dropdown-toggle:focus,
+body.mk-admin-shell app-filters .dropdown-toggle:active,
+body.mk-admin-shell app-filters .dropdown-toggle.active,
+body.mk-admin-shell app-filters .btn-default:focus,
+body.mk-admin-shell app-filters .btn-default:active,
+body.mk-admin-shell app-filters .btn-default.active,
+body.mk-admin-shell app-filters .btn-default:focus-visible,
+body.mk-admin-shell app-filters .open > .dropdown-toggle.btn-default {
+  outline:0!important;
+  outline-offset:0!important;
+  border-color:#efb45d!important;
+  box-shadow:0 0 0 3px rgba(245,155,35,.18)!important;
+}
+
+/* Explicitly neutralize Bootstrap's blue box shadow/ring variables where present. */
+body.mk-admin-shell app-filters .btn {
+  --tw-ring-color:rgba(245,155,35,.20)!important;
+  --tw-ring-offset-color:transparent!important;
+}
+
+/* Dark command bar version. */
+body.mk-admin-shell.mk9-page ._buttons app-filters .dropdown-toggle,
+body.mk-admin-shell.mk9-page ._buttons app-filters .dropdown-toggle:focus,
+body.mk-admin-shell.mk9-page ._buttons app-filters .dropdown-toggle:active,
+body.mk-admin-shell.mk9-page ._buttons app-filters .open > .dropdown-toggle {
+  color:#fff!important;
+  border-color:rgba(245,155,35,.55)!important;
+  background:rgba(245,155,35,.11)!important;
+  box-shadow:0 0 0 3px rgba(245,155,35,.16)!important;
+}
+
+/* Dropdown links use Markito colors, not Bootstrap blue. */
+body.mk-admin-shell app-filters .dropdown-menu > li > a:hover,
+body.mk-admin-shell app-filters .dropdown-menu > li > a:focus,
+body.mk-admin-shell app-filters .dropdown-menu > li.active > a {
+  color:#8d4e00!important;
+  background:#fff3df!important;
+}
+
+/* ------------------------------------------------------------
+   5) MOBILE FILTER POSITIONING
+   ------------------------------------------------------------ */
+
+@media (max-width:767px) {
+  body.mk-admin-shell app-filters {
+    width:auto;
+    max-width:100%;
+  }
+
+  body.mk-admin-shell app-filters .dropdown-menu {
+    right:0!important;
+    left:auto!important;
+    min-width:min(300px,calc(100vw - 28px))!important;
+  }
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 10.4
+   Deterministic Admin Shell + Dashboard Options Flow
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) STABLE FIXED HEADER + FIXED SIDEBAR
+   Previous sticky/fixed mix caused the blank-looking upper strip while
+   scrolling. Use one deterministic shell instead.
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell #header {
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  height:66px!important;
+  min-height:66px!important;
+  z-index:1400!important;
+  background:rgba(255,255,255,.97)!important;
+}
+
+body.mk-admin-shell #wrapper {
+  padding-top:66px!important;
+}
+
+body.mk-admin-shell #menu.sidebar {
+  position:fixed!important;
+  top:66px!important;
+  bottom:0!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  z-index:1100!important;
+}
+
+/* Keep the dark visual rail continuous even during internal sidebar scroll. */
+body.mk-admin-shell #menu.sidebar::before {
+  content:"";
+  position:fixed;
+  top:66px;
+  bottom:0;
+  left:0;
+  width:248px;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(245,155,35,.09),transparent 28%),
+    linear-gradient(180deg,#111419 0%,#171b22 100%);
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell #header {
+    height:60px!important;
+    min-height:60px!important;
+  }
+
+  body.mk-admin-shell #wrapper {
+    padding-top:60px!important;
+  }
+
+  body.mk-admin-shell #menu.sidebar,
+  body.mk-admin-shell #menu.sidebar::before {
+    top:60px!important;
+  }
+}
+
+/* ------------------------------------------------------------
+   2) DASHBOARD OPTIONS — lives under hero, hidden until explicit click
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk104-native-options-trigger {
+  display:none!important;
+}
+
+body.mk-admin-shell .mk104-dashboard-options-area {
+  width:100%!important;
+  margin:14px 8px 18px!important;
+  padding:0!important;
+}
+
+/* Important: only show when JS toggles it. */
+body.mk-admin-shell .mk104-dashboard-options-area[style*="display: none"],
+body.mk-admin-shell .mk104-dashboard-options-area[style*="display:none"] {
+  display:none!important;
+}
+
+/* The generated dashboard-options panel itself carries the dark card visuals. */
+body.mk-admin-shell .mk104-dashboard-options-area #dashboard-options {
+  margin:0!important;
+}
+
+/* Hero/options spacing remains clean */
+body.mk-admin-shell .mk-admin-dashboard-hero + .mk104-dashboard-options-area {
+  margin-top:14px!important;
+}
+
+/* ------------------------------------------------------------
+   3) REMOVE OLD FLOATING OPTIONS ARTIFACTS COMPLETELY
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell .mk-admin-dashboard-page > .screen-options-btn,
+body.mk-admin-shell .screen-options-btn:not(.mk104-native-options-trigger) {
+  display:none!important;
+}
+
+/* ------------------------------------------------------------
+   4) SCROLL PERFORMANCE / VISUAL STABILITY
+   ------------------------------------------------------------ */
+
+body.mk-admin-shell #header,
+body.mk-admin-shell #menu.sidebar {
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+/* Prevent content from visually bleeding over the fixed header. */
+body.mk-admin-shell #wrapper .content {
+  position:relative;
+  z-index:1;
+}
+
+
+/* ============================================================
+   Markito Admin UI v1 — Phase 10.6
+   Remove empty dark gap above sidebar account card
+   ============================================================ */
+
+/* Perfex adds tw-mt-[80px] to .sidebar-user-profile.
+   Keep the account card, only remove the oversized empty black area above it. */
+body.mk-admin-shell #menu.sidebar .sidebar-user-profile {
+  margin-top:12px!important;
+}
+
+/* Keep navigation spacing clean below the account card. */
+body.mk-admin-shell #menu.sidebar #side-menu {
+  margin-top:12px!important;
+}
+
+/* ============================================================
+   Markito Admin UI — Setup Drawer Runtime Fix v1
+   ============================================================ */
+
+/*
+ * Perfex native setup drawer uses z-index:9.
+ * Our fixed primary sidebar uses z-index:1100, so Setup was opening
+ * behind the main sidebar and appeared not to work.
+ */
+body.mk-admin-shell #setup-menu-wrapper {
+  position:fixed!important;
+  top:66px!important;
+  bottom:0!important;
+  left:0!important;
+  width:248px!important;
+  height:auto!important;
+  min-height:0!important;
+  z-index:1250!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(245,155,35,.10),transparent 28%),
+    linear-gradient(180deg,#111419 0%,#171b22 100%)!important;
+  box-shadow:10px 0 32px rgba(17,24,39,.20)!important;
+}
+
+/* Remove Perfex's old 57px internal top offset because the drawer itself
+   now starts immediately below our fixed admin header. */
+body.mk-admin-shell #setup-menu-wrapper #setup-menu {
+  margin-top:0!important;
+  padding-top:10px!important;
+  padding-bottom:24px!important;
+}
+
+/* Make Setup drawer text readable on the dark premium rail. */
+body.mk-admin-shell #setup-menu-wrapper .customizer-heading {
+  color:#f8fafc!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li > a {
+  color:#b7c0cd!important;
+  border-radius:10px!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a:hover,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li.active > a,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li > a:hover,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li.active > a {
+  color:#fff!important;
+  background:rgba(245,155,35,.12)!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper .close-customizer {
+  color:#f59b23!important;
+  cursor:pointer!important;
+  position:relative!important;
+  z-index:2!important;
+}
+
+/* Setup remains hidden until Perfex adds display-block on click. */
+body.mk-admin-shell #setup-menu-wrapper:not(.display-block) {
+  display:none!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper.display-block {
+  display:block!important;
+}
+
+/* Keep the fixed header above both sidebars. */
+body.mk-admin-shell #header {
+  z-index:1400!important;
+}
+
+@media (max-width:767px) {
+  body.mk-admin-shell #setup-menu-wrapper {
+    top:60px!important;
+    width:248px!important;
+    max-width:86vw!important;
+  }
+}
+
+/* ============================================================
+   Markito Admin UI — Setup Contrast Fix v1
+   ============================================================ */
+
+body.mk-admin-shell #setup-menu-wrapper {
+  color:#e6ebf2!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper .customizer-heading,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li > a,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .menu-text {
+  color:#c8d0dc!important;
+  opacity:1!important;
+  font-weight:600!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a i,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a svg,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li > a i,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li > a svg,
+body.mk-admin-shell #setup-menu-wrapper .close-customizer {
+  color:#98a6b8!important;
+  opacity:1!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a:hover,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li.mm-active > a,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li.active > a,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li > a:hover,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li.active > a {
+  color:#ffffff!important;
+  background:rgba(245,155,35,.13)!important;
+  border-color:rgba(245,155,35,.45)!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a:hover i,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li.mm-active > a i,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li.active > a i,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li > a:hover i,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu .nav-second-level > li.active > a i,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li > a:hover svg,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li.mm-active > a svg,
+body.mk-admin-shell #setup-menu-wrapper #setup-menu > li.active > a svg {
+  color:#f59b23!important;
+  opacity:1!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper .customizer-heading {
+  color:#f4f7fb!important;
+  font-weight:800!important;
+}
+
+body.mk-admin-shell #setup-menu-wrapper .close-customizer:hover {
+  color:#f59b23!important;
+  background:rgba(245,155,35,.10)!important;
+}

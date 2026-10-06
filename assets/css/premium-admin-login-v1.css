@@ -1,0 +1,166 @@
+
+/* ============================================================
+   Premium Admin Login Restore v1
+   Standalone login styling only — no theme controller dependency
+   ============================================================ */
+
+body.login_admin.mk-auth-premium {
+  --mk-login-accent:#f59b23;
+  --mk-login-accent-rgb:245,155,35;
+  --mk-login-dark:#15191f;
+
+  min-height:100vh;
+  margin:0!important;
+  color:#eef2f7!important;
+  background:
+    radial-gradient(circle at 12% 16%,rgba(var(--mk-login-accent-rgb),.18),transparent 24%),
+    radial-gradient(circle at 85% 82%,rgba(var(--mk-login-accent-rgb),.09),transparent 28%),
+    linear-gradient(135deg,#0d1015 0%,var(--mk-login-dark) 52%,#10141a 100%)!important;
+  overflow-x:hidden;
+}
+
+body.login_admin.mk-auth-premium::before,
+body.login_admin.mk-auth-premium::after{
+  content:"";
+  position:fixed;
+  pointer-events:none;
+  border-radius:999px;
+}
+
+body.login_admin.mk-auth-premium::before{
+  width:440px;
+  height:440px;
+  top:-230px;
+  right:-120px;
+  border:1px solid rgba(var(--mk-login-accent-rgb),.12);
+  box-shadow:
+    0 0 0 70px rgba(var(--mk-login-accent-rgb),.025),
+    0 0 0 145px rgba(var(--mk-login-accent-rgb),.018);
+}
+
+body.login_admin.mk-auth-premium::after{
+  width:260px;
+  height:260px;
+  bottom:-135px;
+  left:-85px;
+  background:rgba(var(--mk-login-accent-rgb),.045);
+}
+
+body.login_admin.mk-auth-premium .authentication-form-wrapper{
+  max-width:460px!important;
+  min-height:100vh;
+  padding:56px 18px!important;
+  margin:0 auto!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  z-index:5;
+}
+
+body.login_admin.mk-auth-premium .company-logo{
+  padding:0 10px 28px!important;
+}
+
+body.login_admin.mk-auth-premium .company-logo img{
+  max-width:235px;
+  max-height:86px;
+  width:auto;
+  height:auto;
+  filter:drop-shadow(0 8px 22px rgba(0,0,0,.24));
+}
+
+body.login_admin.mk-auth-premium .authentication-form-wrapper > .text-center h1{
+  color:#fff!important;
+  font-size:30px!important;
+  line-height:1.15;
+  letter-spacing:-.6px;
+}
+
+body.login_admin.mk-auth-premium .authentication-form-wrapper > .text-center p{
+  color:#98a4b5!important;
+  margin-bottom:22px!important;
+}
+
+body.login_admin.mk-auth-premium .authentication-form-wrapper > .tw-bg-white{
+  padding:28px!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:20px!important;
+  background:rgba(255,255,255,.075)!important;
+  box-shadow:0 28px 80px rgba(0,0,0,.32)!important;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+
+body.login_admin.mk-auth-premium label,
+body.login_admin.mk-auth-premium .control-label{
+  color:#e7ebf1!important;
+  font-weight:700!important;
+}
+
+body.login_admin.mk-auth-premium .text-muted{
+  color:#9ca7b7!important;
+}
+
+body.login_admin.mk-auth-premium .text-muted:hover{
+  color:var(--mk-login-accent)!important;
+}
+
+body.login_admin.mk-auth-premium .form-control{
+  height:48px!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  border-radius:11px!important;
+  background:rgba(255,255,255,.075)!important;
+  box-shadow:none!important;
+}
+
+body.login_admin.mk-auth-premium .form-control:focus{
+  border-color:var(--mk-login-accent)!important;
+  box-shadow:0 0 0 3px rgba(var(--mk-login-accent-rgb),.16)!important;
+  outline:0!important;
+}
+
+body.login_admin.mk-auth-premium input:-webkit-autofill,
+body.login_admin.mk-auth-premium input:-webkit-autofill:hover,
+body.login_admin.mk-auth-premium input:-webkit-autofill:focus{
+  -webkit-text-fill-color:#fff;
+  -webkit-box-shadow:0 0 0 1000px #272b31 inset;
+  transition:background-color 9999s ease-out;
+}
+
+body.login_admin.mk-auth-premium .checkbox label{
+  color:#aab3c0!important;
+}
+
+body.login_admin.mk-auth-premium .btn-primary{
+  min-height:48px;
+  border:0!important;
+  border-radius:11px!important;
+  color:#16191d!important;
+  font-weight:800!important;
+  background:var(--mk-login-accent)!important;
+  box-shadow:0 10px 26px rgba(var(--mk-login-accent-rgb),.22)!important;
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+
+body.login_admin.mk-auth-premium .btn-primary:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.04);
+  box-shadow:0 14px 34px rgba(var(--mk-login-accent-rgb),.27)!important;
+}
+
+body.login_admin.mk-auth-premium .alert{
+  border-radius:11px;
+}
+
+@media(max-width:640px){
+  body.login_admin.mk-auth-premium .authentication-form-wrapper{
+    padding:28px 13px!important;
+  }
+  body.login_admin.mk-auth-premium .authentication-form-wrapper > .tw-bg-white{
+    margin-left:0!important;
+    margin-right:0!important;
+    padding:22px!important;
+  }
+}
