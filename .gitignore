@@ -11,3 +11,11 @@ application/language_backups/
 application/views/**/backups/
 assets/**/backups/
 modules/synchub/**/backups/
+
+# Local nested project copies
+markito-local/
+seen-local/
+
+# Installer / deployment archives
+*.zip
+INSTALL-*.bat
